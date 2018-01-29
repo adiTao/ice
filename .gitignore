@@ -259,3 +259,13 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/System.Security.Cryptography.X509Certificates.dll
+/System.Security.Cryptography.Primitives.dll
+/System.Security.Cryptography.Encoding.dll
+/System.Security.Cryptography.Algorithms.dll
+/System.Net.Http.dll
+/Newtonsoft.Json.xml
+/Newtonsoft.Json.dll
+/Neo4jClient.xml
+/Neo4jClient.dll
+/Neo4j.Driver.dll

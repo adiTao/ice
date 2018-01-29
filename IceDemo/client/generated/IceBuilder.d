@@ -2,4 +2,6 @@
 <dependencies>
   <source name="..\..\NodeMap.ice">
   </source>
+  <source name="..\..\UserMap.ice">
+  </source>
 </dependencies>

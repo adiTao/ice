@@ -4,93 +4,109 @@
 //
 // **********************************************************************
 
-using Demo;
 using System;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
+using Demo;
 
 public class NodeMapI : NodeMapDisp_
 {
-    public override void SendGreeting(string msg, Ice.Current current)
+    public override MyNode[] GetAllNodes(Ice.Current current)
     {
-        string user_name = current.ctx["user_name"];
-        Console.Out.WriteLine("{0}:{1}", user_name, msg);
+        var query = Neo4jConfig.GraphClient.Cypher
+            .Match("(node:Node)")
+            .Return(node => node.As<MyNode>());
+        var data = query.Results.ToArray();
+
+        return data;
+    }
+
+    public override bool CreateNode(MyNode newNode, Ice.Current current)
+    {
+        if (newNode.ParentId == "root") //Root
+        {
+            Neo4jConfig.GraphClient.Cypher
+                .Merge("(node:Node { NodeText: {nodeText} })")
+                .OnCreate()
+                .Set("node = {newNode}")
+                .WithParams(new
+                {
+                    nodeText = newNode.NodeText,
+                    newNode
+                })
+                .ExecuteWithoutResults();
+        }
+        else //Branch
+        {
+            Neo4jConfig.GraphClient.Cypher
+                .Match("(parent:Node)")
+                .Where((MyNode parent) => parent.NodeId == newNode.ParentId)
+                .Create("(parent)-[:HASCHILD]->(child:Node {newNode})")
+                .WithParam("newNode", newNode)
+                .ExecuteWithoutResults();
+        }
         // 向其他人廣播
-        Broadcast(msg, current);
-    }
-
-    public override bool CreateMap(string mapName, Ice.Current current)
-    {
+        BroadcastNode("新建節點", newNode, current);
         return true;
     }
 
-    public override bool CreateNode(MyNode node, Ice.Current current)
+    public override bool EditNode(MyNode editNode, Ice.Current current)
     {
-        return true;
-    }
-
-    public override bool EditNode(MyNode node, Ice.Current current)
-    {
+        Neo4jConfig.GraphClient.Cypher
+            .Match("(node:Node)")
+            .Where((MyNode node) => node.NodeId == editNode.NodeId)
+            .Set("node.NodeText = {nodeText}")
+            .WithParam("nodeText", editNode.NodeText)
+            .ExecuteWithoutResults();
+        // 向其他人廣播
+        BroadcastNode("編輯節點", editNode, current);
         return true;
     }
 
     public override bool DeleteNode(string nodeId, Ice.Current current)
     {
+        Neo4jConfig.GraphClient.Cypher
+            .Match("(node:Node)")
+            .Where((MyNode node) => node.NodeId == nodeId)
+            .DetachDelete("node")
+            .ExecuteWithoutResults();
+
+        MyNode newnode = new MyNode { NodeId = nodeId};
+        // 向其他人廣播
+        BroadcastNode("刪除節點", newnode, current);
         return true;
     }
 
-    public override bool MoveNode(MyNode node, Ice.Current current)
+    public override bool MoveNode(MyNode moveNode, Ice.Current current)
     {
+        //Remove relation
+        Neo4jConfig.GraphClient.Cypher
+            .OptionalMatch("(node:Node)<-[r]-()")
+            .Where((MyNode node) => node.NodeId == moveNode.NodeId)
+            .Delete("r")
+            .ExecuteWithoutResults();
+
+        //Connect new parent
+        Neo4jConfig.GraphClient.Cypher
+            .Match("(node:Node)")
+            .Where((MyNode node) => node.NodeId == moveNode.NodeId)
+            .Set("node.ParentId = {parentId}")
+            .WithParam("parentId", moveNode.ParentId)
+            .ExecuteWithoutResults();
+
+        //Connect new parent relation
+        Neo4jConfig.GraphClient.Cypher
+            .Match("(node1:Node)", "(node2:Node)")
+            .Where((MyNode node1) => node1.NodeId == moveNode.ParentId)
+            .AndWhere((MyNode node2) => node2.NodeId == moveNode.NodeId)
+            .Create("(node1)-[:HASCHILD]->(node2)")
+            .ExecuteWithoutResults();
+
+        // 向其他人廣播
+        BroadcastNode("搬移節點", moveNode, current);
         return true;
     }
 
-    public override void shutdown(Ice.Current current)
-    {
-        Console.Out.WriteLine("Shutting down...");
-        current.adapter.getCommunicator().shutdown();
-    }
-
-    public override void SetupCallback(CallBackPrx cp, Ice.Current current)
-    {
-        if (current != null && current.ctx["user_name"] != null)
-        {
-            string user_name = current.ctx["user_name"];
-            Console.Out.WriteLine("使用者 {0} 已註冊", user_name);
-            _users.Add(new User(user_name, cp));
-        }
-        else
-        {
-            throw new Exception("註冊失敗!!");
-        }
-    }
-
-    public override bool Register(string name, Ice.Current current)
-    {
-        Console.Out.WriteLine("驗證 {0} 是否登入!", name);
-        if (_users.Count == 0)
-            return true;
-        return _users.All(user => user.Name != name);
-    }
-
-    public override void Unregister(Ice.Current current)
-    {
-        string user_name = current.ctx["user_name"];
-        if (user_name != null)
-        {
-            for (int i = _users.Count - 1; i >= 0; i--)
-            {
-                if (_users[i].Name == user_name)
-                    _users.RemoveAt(i);
-            }
-            string msg = string.Format("離開({0})", user_name);
-            Console.WriteLine(msg);
-
-            // 向其他人廣播
-            Broadcast(msg, current);
-        }
-    }
-
-    private void Broadcast(string msg, Ice.Current current)
+    private void BroadcastNode(string msg, MyNode node, Ice.Current current)
     {
         string user_name = current.ctx["user_name"];
         foreach (var user in _users)
@@ -99,9 +115,10 @@ public class NodeMapI : NodeMapDisp_
             {
                 continue;
             }
-            user.Cp.Response(msg, current.ctx);
+            user.Cp.ResponseNode(msg, node.NodeId, node.NodeText, node.ParentId, current.ctx);
         }
     }
+
 
     private UserList _users = new UserList();
 }

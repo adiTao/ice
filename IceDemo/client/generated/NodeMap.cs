@@ -40,21 +40,6 @@ namespace Demo
     [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1720")]
     [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1722")]
     [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1724")]
-    public partial interface CallBack : Ice.Object, CallBackOperations_
-    {
-    }
-
-    [_System.Runtime.InteropServices.ComVisible(false)]
-    [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704")]
-    [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1707")]
-    [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1709")]
-    [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1710")]
-    [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1711")]
-    [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1715")]
-    [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1716")]
-    [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1720")]
-    [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1722")]
-    [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1724")]
     public partial interface NodeMap : Ice.Object, NodeMapOperations_
     {
     }
@@ -63,16 +48,7 @@ namespace Demo
 namespace Demo
 {
     [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-    public delegate void Callback_CallBack_Response();
-
-    [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-    public delegate void Callback_CallBack_ResponseNode();
-
-    [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-    public delegate void Callback_NodeMap_SendGreeting();
-
-    [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-    public delegate void Callback_NodeMap_CreateMap(bool ret);
+    public delegate void Callback_NodeMap_GetAllNodes(global::Demo.MyNode[] ret);
 
     [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
     public delegate void Callback_NodeMap_CreateNode(bool ret);
@@ -85,76 +61,24 @@ namespace Demo
 
     [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
     public delegate void Callback_NodeMap_MoveNode(bool ret);
-
-    [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-    public delegate void Callback_NodeMap_SetupCallback();
-
-    [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-    public delegate void Callback_NodeMap_Register(bool ret);
-
-    [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-    public delegate void Callback_NodeMap_Unregister();
-
-    [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-    public delegate void Callback_NodeMap_shutdown();
 }
 
 namespace Demo
 {
     [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-    public interface CallBackPrx : Ice.ObjectPrx
-    {
-        void Response(string content, Ice.OptionalContext context = new Ice.OptionalContext());
-
-        _System.Threading.Tasks.Task ResponseAsync(string content, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
-
-        Ice.AsyncResult<Demo.Callback_CallBack_Response> begin_Response(string content, Ice.OptionalContext context = new Ice.OptionalContext());
-
-        Ice.AsyncResult begin_Response(string content, Ice.AsyncCallback callback, object cookie);
-
-        Ice.AsyncResult begin_Response(string content, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
-
-        void end_Response(Ice.AsyncResult asyncResult);
-
-        void ResponseNode(string content, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
-
-        _System.Threading.Tasks.Task ResponseNodeAsync(string content, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
-
-        Ice.AsyncResult<Demo.Callback_CallBack_ResponseNode> begin_ResponseNode(string content, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
-
-        Ice.AsyncResult begin_ResponseNode(string content, global::Demo.MyNode n, Ice.AsyncCallback callback, object cookie);
-
-        Ice.AsyncResult begin_ResponseNode(string content, global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
-
-        void end_ResponseNode(Ice.AsyncResult asyncResult);
-    }
-
-    [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
     public interface NodeMapPrx : Ice.ObjectPrx
     {
-        void SendGreeting(string msg, Ice.OptionalContext context = new Ice.OptionalContext());
+        global::Demo.MyNode[] GetAllNodes(Ice.OptionalContext context = new Ice.OptionalContext());
 
-        _System.Threading.Tasks.Task SendGreetingAsync(string msg, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
+        _System.Threading.Tasks.Task<global::Demo.MyNode[]> GetAllNodesAsync(Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
 
-        Ice.AsyncResult<Demo.Callback_NodeMap_SendGreeting> begin_SendGreeting(string msg, Ice.OptionalContext context = new Ice.OptionalContext());
+        Ice.AsyncResult<Demo.Callback_NodeMap_GetAllNodes> begin_GetAllNodes(Ice.OptionalContext context = new Ice.OptionalContext());
 
-        Ice.AsyncResult begin_SendGreeting(string msg, Ice.AsyncCallback callback, object cookie);
+        Ice.AsyncResult begin_GetAllNodes(Ice.AsyncCallback callback, object cookie);
 
-        Ice.AsyncResult begin_SendGreeting(string msg, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
+        Ice.AsyncResult begin_GetAllNodes(Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
 
-        void end_SendGreeting(Ice.AsyncResult asyncResult);
-
-        bool CreateMap(string mapName, Ice.OptionalContext context = new Ice.OptionalContext());
-
-        _System.Threading.Tasks.Task<bool> CreateMapAsync(string mapName, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
-
-        Ice.AsyncResult<Demo.Callback_NodeMap_CreateMap> begin_CreateMap(string mapName, Ice.OptionalContext context = new Ice.OptionalContext());
-
-        Ice.AsyncResult begin_CreateMap(string mapName, Ice.AsyncCallback callback, object cookie);
-
-        Ice.AsyncResult begin_CreateMap(string mapName, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
-
-        bool end_CreateMap(Ice.AsyncResult asyncResult);
+        global::Demo.MyNode[] end_GetAllNodes(Ice.AsyncResult asyncResult);
 
         bool CreateNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
 
@@ -203,77 +127,16 @@ namespace Demo
         Ice.AsyncResult begin_MoveNode(global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
 
         bool end_MoveNode(Ice.AsyncResult asyncResult);
-
-        void SetupCallback(Demo.CallBackPrx cp, Ice.OptionalContext context = new Ice.OptionalContext());
-
-        _System.Threading.Tasks.Task SetupCallbackAsync(Demo.CallBackPrx cp, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
-
-        Ice.AsyncResult<Demo.Callback_NodeMap_SetupCallback> begin_SetupCallback(Demo.CallBackPrx cp, Ice.OptionalContext context = new Ice.OptionalContext());
-
-        Ice.AsyncResult begin_SetupCallback(Demo.CallBackPrx cp, Ice.AsyncCallback callback, object cookie);
-
-        Ice.AsyncResult begin_SetupCallback(Demo.CallBackPrx cp, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
-
-        void end_SetupCallback(Ice.AsyncResult asyncResult);
-
-        bool Register(string name, Ice.OptionalContext context = new Ice.OptionalContext());
-
-        _System.Threading.Tasks.Task<bool> RegisterAsync(string name, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
-
-        Ice.AsyncResult<Demo.Callback_NodeMap_Register> begin_Register(string name, Ice.OptionalContext context = new Ice.OptionalContext());
-
-        Ice.AsyncResult begin_Register(string name, Ice.AsyncCallback callback, object cookie);
-
-        Ice.AsyncResult begin_Register(string name, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
-
-        bool end_Register(Ice.AsyncResult asyncResult);
-
-        void Unregister(Ice.OptionalContext context = new Ice.OptionalContext());
-
-        _System.Threading.Tasks.Task UnregisterAsync(Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
-
-        Ice.AsyncResult<Demo.Callback_NodeMap_Unregister> begin_Unregister(Ice.OptionalContext context = new Ice.OptionalContext());
-
-        Ice.AsyncResult begin_Unregister(Ice.AsyncCallback callback, object cookie);
-
-        Ice.AsyncResult begin_Unregister(Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
-
-        void end_Unregister(Ice.AsyncResult asyncResult);
-
-        void shutdown(Ice.OptionalContext context = new Ice.OptionalContext());
-
-        _System.Threading.Tasks.Task shutdownAsync(Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
-
-        Ice.AsyncResult<Demo.Callback_NodeMap_shutdown> begin_shutdown(Ice.OptionalContext context = new Ice.OptionalContext());
-
-        Ice.AsyncResult begin_shutdown(Ice.AsyncCallback callback, object cookie);
-
-        Ice.AsyncResult begin_shutdown(Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
-
-        void end_shutdown(Ice.AsyncResult asyncResult);
     }
 }
 
 namespace Demo
 {
     [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-    public interface CallBackOperations_
-    {
-        [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-        void Response(string content, Ice.Current current = null);
-
-        [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-        void ResponseNode(string content, global::Demo.MyNode n, Ice.Current current = null);
-    }
-
-    [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
     public interface NodeMapOperations_
     {
         [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-        void SendGreeting(string msg, Ice.Current current = null);
-
-        [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-        bool CreateMap(string mapName, Ice.Current current = null);
+        global::Demo.MyNode[] GetAllNodes(Ice.Current current = null);
 
         [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
         bool CreateNode(global::Demo.MyNode n, Ice.Current current = null);
@@ -286,18 +149,6 @@ namespace Demo
 
         [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
         bool MoveNode(global::Demo.MyNode n, Ice.Current current = null);
-
-        [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-        void SetupCallback(Demo.CallBackPrx cp, Ice.Current current = null);
-
-        [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-        bool Register(string name, Ice.Current current = null);
-
-        [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-        void Unregister(Ice.Current current = null);
-
-        [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-        void shutdown(Ice.Current current = null);
     }
 }
 
@@ -319,325 +170,38 @@ namespace Demo
         }
     }
 
-    [_System.Runtime.InteropServices.ComVisible(false)]
     [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-    [_System.Serializable]
-    public sealed class CallBackPrxHelper : Ice.ObjectPrxHelperBase, CallBackPrx
+    public sealed class NodeListHelper
     {
-        public CallBackPrxHelper()
+        public static void write(Ice.OutputStream ostr, global::Demo.MyNode[] v)
         {
-        }
-
-        public CallBackPrxHelper(_System.Runtime.Serialization.SerializationInfo info, _System.Runtime.Serialization.StreamingContext context) : base(info, context)
-        {
-        }
-
-        #region Synchronous operations
-
-        public void Response(string content, Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            try
+            if(v == null)
             {
-                _iceI_ResponseAsync(content, context, null, _System.Threading.CancellationToken.None, true).Wait();
+                ostr.writeSize(0);
             }
-            catch(_System.AggregateException ex_)
+            else
             {
-                throw ex_.InnerException;
-            }
-        }
-
-        public void ResponseNode(string content, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            try
-            {
-                _iceI_ResponseNodeAsync(content, n, context, null, _System.Threading.CancellationToken.None, true).Wait();
-            }
-            catch(_System.AggregateException ex_)
-            {
-                throw ex_.InnerException;
-            }
-        }
-
-        #endregion
-
-        #region Async Task operations
-
-        public _System.Threading.Tasks.Task ResponseAsync(string content, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
-        {
-            return _iceI_ResponseAsync(content, context, progress, cancel, false);
-        }
-
-        private _System.Threading.Tasks.Task _iceI_ResponseAsync(string iceP_content, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
-        {
-            var completed = new IceInternal.OperationTaskCompletionCallback<object>(progress, cancel);
-            _iceI_Response(iceP_content, context, synchronous, completed);
-            return completed.Task;
-        }
-
-        private const string _Response_name = "Response";
-
-        private void _iceI_Response(string iceP_content, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
-        {
-            var outAsync = getOutgoingAsync<object>(completed);
-            outAsync.invoke(
-                _Response_name,
-                Ice.OperationMode.Normal,
-                Ice.FormatType.DefaultFormat,
-                context,
-                synchronous,
-                write: (Ice.OutputStream ostr) =>
+                ostr.writeSize(v.Length);
+                for(int ix = 0; ix < v.Length; ++ix)
                 {
-                    ostr.writeString(iceP_content);
-                });
-        }
-
-        public _System.Threading.Tasks.Task ResponseNodeAsync(string content, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
-        {
-            return _iceI_ResponseNodeAsync(content, n, context, progress, cancel, false);
-        }
-
-        private _System.Threading.Tasks.Task _iceI_ResponseNodeAsync(string iceP_content, global::Demo.MyNode iceP_n, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
-        {
-            var completed = new IceInternal.OperationTaskCompletionCallback<object>(progress, cancel);
-            _iceI_ResponseNode(iceP_content, iceP_n, context, synchronous, completed);
-            return completed.Task;
-        }
-
-        private const string _ResponseNode_name = "ResponseNode";
-
-        private void _iceI_ResponseNode(string iceP_content, global::Demo.MyNode iceP_n, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
-        {
-            var outAsync = getOutgoingAsync<object>(completed);
-            outAsync.invoke(
-                _ResponseNode_name,
-                Ice.OperationMode.Normal,
-                Ice.FormatType.DefaultFormat,
-                context,
-                synchronous,
-                write: (Ice.OutputStream ostr) =>
-                {
-                    ostr.writeString(iceP_content);
-                    Demo.NodeHelper.write(ostr, iceP_n);
-                });
-        }
-
-        #endregion
-
-        #region Asynchronous operations
-
-        public Ice.AsyncResult<Demo.Callback_CallBack_Response> begin_Response(string content, Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            return begin_Response(content, context, null, null, false);
-        }
-
-        public Ice.AsyncResult begin_Response(string content, Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_Response(content, new Ice.OptionalContext(), callback, cookie, false);
-        }
-
-        public Ice.AsyncResult begin_Response(string content, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_Response(content, context, callback, cookie, false);
-        }
-
-        public void end_Response(Ice.AsyncResult asyncResult)
-        {
-            var resultI_ = IceInternal.AsyncResultI.check(asyncResult, this, _Response_name);
-            ((IceInternal.OutgoingAsyncT<object>)resultI_.OutgoingAsync).getResult(resultI_.wait());
-        }
-
-        private Ice.AsyncResult<Demo.Callback_CallBack_Response> begin_Response(string iceP_content, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
-        {
-            var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_CallBack_Response, object>(
-                (Demo.Callback_CallBack_Response cb, object ret) =>
-                {
-                    if(cb != null)
-                    {
-                        cb.Invoke();
-                    }
-                },
-                this, _Response_name, cookie, completedCallback);
-            _iceI_Response(iceP_content, context, synchronous, completed);
-            return completed;
-        }
-
-        public Ice.AsyncResult<Demo.Callback_CallBack_ResponseNode> begin_ResponseNode(string content, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            return begin_ResponseNode(content, n, context, null, null, false);
-        }
-
-        public Ice.AsyncResult begin_ResponseNode(string content, global::Demo.MyNode n, Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_ResponseNode(content, n, new Ice.OptionalContext(), callback, cookie, false);
-        }
-
-        public Ice.AsyncResult begin_ResponseNode(string content, global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_ResponseNode(content, n, context, callback, cookie, false);
-        }
-
-        public void end_ResponseNode(Ice.AsyncResult asyncResult)
-        {
-            var resultI_ = IceInternal.AsyncResultI.check(asyncResult, this, _ResponseNode_name);
-            ((IceInternal.OutgoingAsyncT<object>)resultI_.OutgoingAsync).getResult(resultI_.wait());
-        }
-
-        private Ice.AsyncResult<Demo.Callback_CallBack_ResponseNode> begin_ResponseNode(string iceP_content, global::Demo.MyNode iceP_n, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
-        {
-            var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_CallBack_ResponseNode, object>(
-                (Demo.Callback_CallBack_ResponseNode cb, object ret) =>
-                {
-                    if(cb != null)
-                    {
-                        cb.Invoke();
-                    }
-                },
-                this, _ResponseNode_name, cookie, completedCallback);
-            _iceI_ResponseNode(iceP_content, iceP_n, context, synchronous, completed);
-            return completed;
-        }
-
-        #endregion
-
-        #region Checked and unchecked cast operations
-
-        public static CallBackPrx checkedCast(Ice.ObjectPrx b)
-        {
-            if(b == null)
-            {
-                return null;
-            }
-            CallBackPrx r = b as CallBackPrx;
-            if((r == null) && b.ice_isA(ice_staticId()))
-            {
-                CallBackPrxHelper h = new CallBackPrxHelper();
-                h.iceCopyFrom(b);
-                r = h;
-            }
-            return r;
-        }
-
-        public static CallBackPrx checkedCast(Ice.ObjectPrx b, _System.Collections.Generic.Dictionary<string, string> ctx)
-        {
-            if(b == null)
-            {
-                return null;
-            }
-            CallBackPrx r = b as CallBackPrx;
-            if((r == null) && b.ice_isA(ice_staticId(), ctx))
-            {
-                CallBackPrxHelper h = new CallBackPrxHelper();
-                h.iceCopyFrom(b);
-                r = h;
-            }
-            return r;
-        }
-
-        public static CallBackPrx checkedCast(Ice.ObjectPrx b, string f)
-        {
-            if(b == null)
-            {
-                return null;
-            }
-            Ice.ObjectPrx bb = b.ice_facet(f);
-            try
-            {
-                if(bb.ice_isA(ice_staticId()))
-                {
-                    CallBackPrxHelper h = new CallBackPrxHelper();
-                    h.iceCopyFrom(bb);
-                    return h;
+                    Demo.NodeHelper.write(ostr, v[ix]);
                 }
             }
-            catch(Ice.FacetNotExistException)
-            {
-            }
-            return null;
         }
 
-        public static CallBackPrx checkedCast(Ice.ObjectPrx b, string f, _System.Collections.Generic.Dictionary<string, string> ctx)
+        public static global::Demo.MyNode[] read(Ice.InputStream istr)
         {
-            if(b == null)
+            global::Demo.MyNode[] v;
             {
-                return null;
-            }
-            Ice.ObjectPrx bb = b.ice_facet(f);
-            try
-            {
-                if(bb.ice_isA(ice_staticId(), ctx))
+                int szx = istr.readAndCheckSeqSize(1);
+                v = new global::Demo.MyNode[szx];
+                for(int ix = 0; ix < szx; ++ix)
                 {
-                    CallBackPrxHelper h = new CallBackPrxHelper();
-                    h.iceCopyFrom(bb);
-                    return h;
+                    v[ix] = Demo.NodeHelper.read(istr);
                 }
             }
-            catch(Ice.FacetNotExistException)
-            {
-            }
-            return null;
+            return v;
         }
-
-        public static CallBackPrx uncheckedCast(Ice.ObjectPrx b)
-        {
-            if(b == null)
-            {
-                return null;
-            }
-            CallBackPrx r = b as CallBackPrx;
-            if(r == null)
-            {
-                CallBackPrxHelper h = new CallBackPrxHelper();
-                h.iceCopyFrom(b);
-                r = h;
-            }
-            return r;
-        }
-
-        public static CallBackPrx uncheckedCast(Ice.ObjectPrx b, string f)
-        {
-            if(b == null)
-            {
-                return null;
-            }
-            Ice.ObjectPrx bb = b.ice_facet(f);
-            CallBackPrxHelper h = new CallBackPrxHelper();
-            h.iceCopyFrom(bb);
-            return h;
-        }
-
-        private static readonly string[] _ids =
-        {
-            "::Demo::CallBack",
-            "::Ice::Object"
-        };
-
-        public static string ice_staticId()
-        {
-            return _ids[0];
-        }
-
-        #endregion
-
-        #region Marshaling support
-
-        public static void write(Ice.OutputStream ostr, CallBackPrx v)
-        {
-            ostr.writeProxy(v);
-        }
-
-        public static CallBackPrx read(Ice.InputStream istr)
-        {
-            Ice.ObjectPrx proxy = istr.readProxy();
-            if(proxy != null)
-            {
-                CallBackPrxHelper result = new CallBackPrxHelper();
-                result.iceCopyFrom(proxy);
-                return result;
-            }
-            return null;
-        }
-
-        #endregion
     }
 
     [_System.Runtime.InteropServices.ComVisible(false)]
@@ -654,18 +218,6 @@ namespace Demo
         }
 
         #region Synchronous operations
-
-        public bool CreateMap(string mapName, Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            try
-            {
-                return _iceI_CreateMapAsync(mapName, context, null, _System.Threading.CancellationToken.None, true).Result;
-            }
-            catch(_System.AggregateException ex_)
-            {
-                throw ex_.InnerException;
-            }
-        }
 
         public bool CreateNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
         {
@@ -703,6 +255,18 @@ namespace Demo
             }
         }
 
+        public global::Demo.MyNode[] GetAllNodes(Ice.OptionalContext context = new Ice.OptionalContext())
+        {
+            try
+            {
+                return _iceI_GetAllNodesAsync(context, null, _System.Threading.CancellationToken.None, true).Result;
+            }
+            catch(_System.AggregateException ex_)
+            {
+                throw ex_.InnerException;
+            }
+        }
+
         public bool MoveNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
         {
             try
@@ -715,105 +279,9 @@ namespace Demo
             }
         }
 
-        public bool Register(string name, Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            try
-            {
-                return _iceI_RegisterAsync(name, context, null, _System.Threading.CancellationToken.None, true).Result;
-            }
-            catch(_System.AggregateException ex_)
-            {
-                throw ex_.InnerException;
-            }
-        }
-
-        public void SendGreeting(string msg, Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            try
-            {
-                _iceI_SendGreetingAsync(msg, context, null, _System.Threading.CancellationToken.None, true).Wait();
-            }
-            catch(_System.AggregateException ex_)
-            {
-                throw ex_.InnerException;
-            }
-        }
-
-        public void SetupCallback(Demo.CallBackPrx cp, Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            try
-            {
-                _iceI_SetupCallbackAsync(cp, context, null, _System.Threading.CancellationToken.None, true).Wait();
-            }
-            catch(_System.AggregateException ex_)
-            {
-                throw ex_.InnerException;
-            }
-        }
-
-        public void Unregister(Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            try
-            {
-                _iceI_UnregisterAsync(context, null, _System.Threading.CancellationToken.None, true).Wait();
-            }
-            catch(_System.AggregateException ex_)
-            {
-                throw ex_.InnerException;
-            }
-        }
-
-        public void shutdown(Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            try
-            {
-                _iceI_shutdownAsync(context, null, _System.Threading.CancellationToken.None, true).Wait();
-            }
-            catch(_System.AggregateException ex_)
-            {
-                throw ex_.InnerException;
-            }
-        }
-
         #endregion
 
         #region Async Task operations
-
-        public _System.Threading.Tasks.Task<bool> CreateMapAsync(string mapName, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
-        {
-            return _iceI_CreateMapAsync(mapName, context, progress, cancel, false);
-        }
-
-        private _System.Threading.Tasks.Task<bool> _iceI_CreateMapAsync(string iceP_mapName, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
-        {
-            iceCheckTwowayOnly(_CreateMap_name);
-            var completed = new IceInternal.OperationTaskCompletionCallback<bool>(progress, cancel);
-            _iceI_CreateMap(iceP_mapName, context, synchronous, completed);
-            return completed.Task;
-        }
-
-        private const string _CreateMap_name = "CreateMap";
-
-        private void _iceI_CreateMap(string iceP_mapName, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
-        {
-            var outAsync = getOutgoingAsync<bool>(completed);
-            outAsync.invoke(
-                _CreateMap_name,
-                Ice.OperationMode.Normal,
-                Ice.FormatType.DefaultFormat,
-                context,
-                synchronous,
-                write: (Ice.OutputStream ostr) =>
-                {
-                    ostr.writeString(iceP_mapName);
-                },
-                read: (Ice.InputStream istr) =>
-                {
-                    bool ret;
-                    ret = istr.readBool();
-                    return ret;
-                });
-        }
 
         public _System.Threading.Tasks.Task<bool> CreateNodeAsync(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
         {
@@ -923,6 +391,38 @@ namespace Demo
                 });
         }
 
+        public _System.Threading.Tasks.Task<global::Demo.MyNode[]> GetAllNodesAsync(Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
+        {
+            return _iceI_GetAllNodesAsync(context, progress, cancel, false);
+        }
+
+        private _System.Threading.Tasks.Task<global::Demo.MyNode[]> _iceI_GetAllNodesAsync(Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
+        {
+            iceCheckTwowayOnly(_GetAllNodes_name);
+            var completed = new IceInternal.OperationTaskCompletionCallback<global::Demo.MyNode[]>(progress, cancel);
+            _iceI_GetAllNodes(context, synchronous, completed);
+            return completed.Task;
+        }
+
+        private const string _GetAllNodes_name = "GetAllNodes";
+
+        private void _iceI_GetAllNodes(_System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
+        {
+            var outAsync = getOutgoingAsync<global::Demo.MyNode[]>(completed);
+            outAsync.invoke(
+                _GetAllNodes_name,
+                Ice.OperationMode.Normal,
+                Ice.FormatType.DefaultFormat,
+                context,
+                synchronous,
+                read: (Ice.InputStream istr) =>
+                {
+                    global::Demo.MyNode[] ret;
+                    ret = Demo.NodeListHelper.read(istr);
+                    return ret;
+                });
+        }
+
         public _System.Threading.Tasks.Task<bool> MoveNodeAsync(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
         {
             return _iceI_MoveNodeAsync(n, context, progress, cancel, false);
@@ -959,191 +459,9 @@ namespace Demo
                 });
         }
 
-        public _System.Threading.Tasks.Task<bool> RegisterAsync(string name, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
-        {
-            return _iceI_RegisterAsync(name, context, progress, cancel, false);
-        }
-
-        private _System.Threading.Tasks.Task<bool> _iceI_RegisterAsync(string iceP_name, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
-        {
-            iceCheckTwowayOnly(_Register_name);
-            var completed = new IceInternal.OperationTaskCompletionCallback<bool>(progress, cancel);
-            _iceI_Register(iceP_name, context, synchronous, completed);
-            return completed.Task;
-        }
-
-        private const string _Register_name = "Register";
-
-        private void _iceI_Register(string iceP_name, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
-        {
-            var outAsync = getOutgoingAsync<bool>(completed);
-            outAsync.invoke(
-                _Register_name,
-                Ice.OperationMode.Normal,
-                Ice.FormatType.DefaultFormat,
-                context,
-                synchronous,
-                write: (Ice.OutputStream ostr) =>
-                {
-                    ostr.writeString(iceP_name);
-                },
-                read: (Ice.InputStream istr) =>
-                {
-                    bool ret;
-                    ret = istr.readBool();
-                    return ret;
-                });
-        }
-
-        public _System.Threading.Tasks.Task SendGreetingAsync(string msg, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
-        {
-            return _iceI_SendGreetingAsync(msg, context, progress, cancel, false);
-        }
-
-        private _System.Threading.Tasks.Task _iceI_SendGreetingAsync(string iceP_msg, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
-        {
-            var completed = new IceInternal.OperationTaskCompletionCallback<object>(progress, cancel);
-            _iceI_SendGreeting(iceP_msg, context, synchronous, completed);
-            return completed.Task;
-        }
-
-        private const string _SendGreeting_name = "SendGreeting";
-
-        private void _iceI_SendGreeting(string iceP_msg, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
-        {
-            var outAsync = getOutgoingAsync<object>(completed);
-            outAsync.invoke(
-                _SendGreeting_name,
-                Ice.OperationMode.Idempotent,
-                Ice.FormatType.DefaultFormat,
-                context,
-                synchronous,
-                write: (Ice.OutputStream ostr) =>
-                {
-                    ostr.writeString(iceP_msg);
-                });
-        }
-
-        public _System.Threading.Tasks.Task SetupCallbackAsync(Demo.CallBackPrx cp, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
-        {
-            return _iceI_SetupCallbackAsync(cp, context, progress, cancel, false);
-        }
-
-        private _System.Threading.Tasks.Task _iceI_SetupCallbackAsync(Demo.CallBackPrx iceP_cp, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
-        {
-            var completed = new IceInternal.OperationTaskCompletionCallback<object>(progress, cancel);
-            _iceI_SetupCallback(iceP_cp, context, synchronous, completed);
-            return completed.Task;
-        }
-
-        private const string _SetupCallback_name = "SetupCallback";
-
-        private void _iceI_SetupCallback(Demo.CallBackPrx iceP_cp, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
-        {
-            var outAsync = getOutgoingAsync<object>(completed);
-            outAsync.invoke(
-                _SetupCallback_name,
-                Ice.OperationMode.Normal,
-                Ice.FormatType.DefaultFormat,
-                context,
-                synchronous,
-                write: (Ice.OutputStream ostr) =>
-                {
-                    Demo.CallBackPrxHelper.write(ostr, iceP_cp);
-                });
-        }
-
-        public _System.Threading.Tasks.Task UnregisterAsync(Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
-        {
-            return _iceI_UnregisterAsync(context, progress, cancel, false);
-        }
-
-        private _System.Threading.Tasks.Task _iceI_UnregisterAsync(Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
-        {
-            var completed = new IceInternal.OperationTaskCompletionCallback<object>(progress, cancel);
-            _iceI_Unregister(context, synchronous, completed);
-            return completed.Task;
-        }
-
-        private const string _Unregister_name = "Unregister";
-
-        private void _iceI_Unregister(_System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
-        {
-            var outAsync = getOutgoingAsync<object>(completed);
-            outAsync.invoke(
-                _Unregister_name,
-                Ice.OperationMode.Normal,
-                Ice.FormatType.DefaultFormat,
-                context,
-                synchronous);
-        }
-
-        public _System.Threading.Tasks.Task shutdownAsync(Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
-        {
-            return _iceI_shutdownAsync(context, progress, cancel, false);
-        }
-
-        private _System.Threading.Tasks.Task _iceI_shutdownAsync(Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
-        {
-            var completed = new IceInternal.OperationTaskCompletionCallback<object>(progress, cancel);
-            _iceI_shutdown(context, synchronous, completed);
-            return completed.Task;
-        }
-
-        private const string _shutdown_name = "shutdown";
-
-        private void _iceI_shutdown(_System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
-        {
-            var outAsync = getOutgoingAsync<object>(completed);
-            outAsync.invoke(
-                _shutdown_name,
-                Ice.OperationMode.Normal,
-                Ice.FormatType.DefaultFormat,
-                context,
-                synchronous);
-        }
-
         #endregion
 
         #region Asynchronous operations
-
-        public Ice.AsyncResult<Demo.Callback_NodeMap_CreateMap> begin_CreateMap(string mapName, Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            return begin_CreateMap(mapName, context, null, null, false);
-        }
-
-        public Ice.AsyncResult begin_CreateMap(string mapName, Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_CreateMap(mapName, new Ice.OptionalContext(), callback, cookie, false);
-        }
-
-        public Ice.AsyncResult begin_CreateMap(string mapName, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_CreateMap(mapName, context, callback, cookie, false);
-        }
-
-        public bool end_CreateMap(Ice.AsyncResult asyncResult)
-        {
-            var resultI_ = IceInternal.AsyncResultI.check(asyncResult, this, _CreateMap_name);
-            var outgoing_ = (IceInternal.OutgoingAsyncT<bool>)resultI_.OutgoingAsync;
-            return outgoing_.getResult(resultI_.wait());
-        }
-
-        private Ice.AsyncResult<Demo.Callback_NodeMap_CreateMap> begin_CreateMap(string iceP_mapName, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
-        {
-            iceCheckAsyncTwowayOnly(_CreateMap_name);
-            var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_NodeMap_CreateMap, bool>(
-                (Demo.Callback_NodeMap_CreateMap cb, bool ret) =>
-                {
-                    if(cb != null)
-                    {
-                        cb.Invoke(ret);
-                    }
-                },
-                this, _CreateMap_name, cookie, completedCallback);
-            _iceI_CreateMap(iceP_mapName, context, synchronous, completed);
-            return completed;
-        }
 
         public Ice.AsyncResult<Demo.Callback_NodeMap_CreateNode> begin_CreateNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
         {
@@ -1259,6 +577,44 @@ namespace Demo
             return completed;
         }
 
+        public Ice.AsyncResult<Demo.Callback_NodeMap_GetAllNodes> begin_GetAllNodes(Ice.OptionalContext context = new Ice.OptionalContext())
+        {
+            return begin_GetAllNodes(context, null, null, false);
+        }
+
+        public Ice.AsyncResult begin_GetAllNodes(Ice.AsyncCallback callback, object cookie)
+        {
+            return begin_GetAllNodes(new Ice.OptionalContext(), callback, cookie, false);
+        }
+
+        public Ice.AsyncResult begin_GetAllNodes(Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
+        {
+            return begin_GetAllNodes(context, callback, cookie, false);
+        }
+
+        public global::Demo.MyNode[] end_GetAllNodes(Ice.AsyncResult asyncResult)
+        {
+            var resultI_ = IceInternal.AsyncResultI.check(asyncResult, this, _GetAllNodes_name);
+            var outgoing_ = (IceInternal.OutgoingAsyncT<global::Demo.MyNode[]>)resultI_.OutgoingAsync;
+            return outgoing_.getResult(resultI_.wait());
+        }
+
+        private Ice.AsyncResult<Demo.Callback_NodeMap_GetAllNodes> begin_GetAllNodes(_System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
+        {
+            iceCheckAsyncTwowayOnly(_GetAllNodes_name);
+            var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_NodeMap_GetAllNodes, global::Demo.MyNode[]>(
+                (Demo.Callback_NodeMap_GetAllNodes cb, global::Demo.MyNode[] ret) =>
+                {
+                    if(cb != null)
+                    {
+                        cb.Invoke(ret);
+                    }
+                },
+                this, _GetAllNodes_name, cookie, completedCallback);
+            _iceI_GetAllNodes(context, synchronous, completed);
+            return completed;
+        }
+
         public Ice.AsyncResult<Demo.Callback_NodeMap_MoveNode> begin_MoveNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
         {
             return begin_MoveNode(n, context, null, null, false);
@@ -1294,188 +650,6 @@ namespace Demo
                 },
                 this, _MoveNode_name, cookie, completedCallback);
             _iceI_MoveNode(iceP_n, context, synchronous, completed);
-            return completed;
-        }
-
-        public Ice.AsyncResult<Demo.Callback_NodeMap_Register> begin_Register(string name, Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            return begin_Register(name, context, null, null, false);
-        }
-
-        public Ice.AsyncResult begin_Register(string name, Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_Register(name, new Ice.OptionalContext(), callback, cookie, false);
-        }
-
-        public Ice.AsyncResult begin_Register(string name, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_Register(name, context, callback, cookie, false);
-        }
-
-        public bool end_Register(Ice.AsyncResult asyncResult)
-        {
-            var resultI_ = IceInternal.AsyncResultI.check(asyncResult, this, _Register_name);
-            var outgoing_ = (IceInternal.OutgoingAsyncT<bool>)resultI_.OutgoingAsync;
-            return outgoing_.getResult(resultI_.wait());
-        }
-
-        private Ice.AsyncResult<Demo.Callback_NodeMap_Register> begin_Register(string iceP_name, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
-        {
-            iceCheckAsyncTwowayOnly(_Register_name);
-            var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_NodeMap_Register, bool>(
-                (Demo.Callback_NodeMap_Register cb, bool ret) =>
-                {
-                    if(cb != null)
-                    {
-                        cb.Invoke(ret);
-                    }
-                },
-                this, _Register_name, cookie, completedCallback);
-            _iceI_Register(iceP_name, context, synchronous, completed);
-            return completed;
-        }
-
-        public Ice.AsyncResult<Demo.Callback_NodeMap_SendGreeting> begin_SendGreeting(string msg, Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            return begin_SendGreeting(msg, context, null, null, false);
-        }
-
-        public Ice.AsyncResult begin_SendGreeting(string msg, Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_SendGreeting(msg, new Ice.OptionalContext(), callback, cookie, false);
-        }
-
-        public Ice.AsyncResult begin_SendGreeting(string msg, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_SendGreeting(msg, context, callback, cookie, false);
-        }
-
-        public void end_SendGreeting(Ice.AsyncResult asyncResult)
-        {
-            var resultI_ = IceInternal.AsyncResultI.check(asyncResult, this, _SendGreeting_name);
-            ((IceInternal.OutgoingAsyncT<object>)resultI_.OutgoingAsync).getResult(resultI_.wait());
-        }
-
-        private Ice.AsyncResult<Demo.Callback_NodeMap_SendGreeting> begin_SendGreeting(string iceP_msg, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
-        {
-            var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_NodeMap_SendGreeting, object>(
-                (Demo.Callback_NodeMap_SendGreeting cb, object ret) =>
-                {
-                    if(cb != null)
-                    {
-                        cb.Invoke();
-                    }
-                },
-                this, _SendGreeting_name, cookie, completedCallback);
-            _iceI_SendGreeting(iceP_msg, context, synchronous, completed);
-            return completed;
-        }
-
-        public Ice.AsyncResult<Demo.Callback_NodeMap_SetupCallback> begin_SetupCallback(Demo.CallBackPrx cp, Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            return begin_SetupCallback(cp, context, null, null, false);
-        }
-
-        public Ice.AsyncResult begin_SetupCallback(Demo.CallBackPrx cp, Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_SetupCallback(cp, new Ice.OptionalContext(), callback, cookie, false);
-        }
-
-        public Ice.AsyncResult begin_SetupCallback(Demo.CallBackPrx cp, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_SetupCallback(cp, context, callback, cookie, false);
-        }
-
-        public void end_SetupCallback(Ice.AsyncResult asyncResult)
-        {
-            var resultI_ = IceInternal.AsyncResultI.check(asyncResult, this, _SetupCallback_name);
-            ((IceInternal.OutgoingAsyncT<object>)resultI_.OutgoingAsync).getResult(resultI_.wait());
-        }
-
-        private Ice.AsyncResult<Demo.Callback_NodeMap_SetupCallback> begin_SetupCallback(Demo.CallBackPrx iceP_cp, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
-        {
-            var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_NodeMap_SetupCallback, object>(
-                (Demo.Callback_NodeMap_SetupCallback cb, object ret) =>
-                {
-                    if(cb != null)
-                    {
-                        cb.Invoke();
-                    }
-                },
-                this, _SetupCallback_name, cookie, completedCallback);
-            _iceI_SetupCallback(iceP_cp, context, synchronous, completed);
-            return completed;
-        }
-
-        public Ice.AsyncResult<Demo.Callback_NodeMap_Unregister> begin_Unregister(Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            return begin_Unregister(context, null, null, false);
-        }
-
-        public Ice.AsyncResult begin_Unregister(Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_Unregister(new Ice.OptionalContext(), callback, cookie, false);
-        }
-
-        public Ice.AsyncResult begin_Unregister(Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_Unregister(context, callback, cookie, false);
-        }
-
-        public void end_Unregister(Ice.AsyncResult asyncResult)
-        {
-            var resultI_ = IceInternal.AsyncResultI.check(asyncResult, this, _Unregister_name);
-            ((IceInternal.OutgoingAsyncT<object>)resultI_.OutgoingAsync).getResult(resultI_.wait());
-        }
-
-        private Ice.AsyncResult<Demo.Callback_NodeMap_Unregister> begin_Unregister(_System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
-        {
-            var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_NodeMap_Unregister, object>(
-                (Demo.Callback_NodeMap_Unregister cb, object ret) =>
-                {
-                    if(cb != null)
-                    {
-                        cb.Invoke();
-                    }
-                },
-                this, _Unregister_name, cookie, completedCallback);
-            _iceI_Unregister(context, synchronous, completed);
-            return completed;
-        }
-
-        public Ice.AsyncResult<Demo.Callback_NodeMap_shutdown> begin_shutdown(Ice.OptionalContext context = new Ice.OptionalContext())
-        {
-            return begin_shutdown(context, null, null, false);
-        }
-
-        public Ice.AsyncResult begin_shutdown(Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_shutdown(new Ice.OptionalContext(), callback, cookie, false);
-        }
-
-        public Ice.AsyncResult begin_shutdown(Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
-        {
-            return begin_shutdown(context, callback, cookie, false);
-        }
-
-        public void end_shutdown(Ice.AsyncResult asyncResult)
-        {
-            var resultI_ = IceInternal.AsyncResultI.check(asyncResult, this, _shutdown_name);
-            ((IceInternal.OutgoingAsyncT<object>)resultI_.OutgoingAsync).getResult(resultI_.wait());
-        }
-
-        private Ice.AsyncResult<Demo.Callback_NodeMap_shutdown> begin_shutdown(_System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
-        {
-            var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_NodeMap_shutdown, object>(
-                (Demo.Callback_NodeMap_shutdown cb, object ret) =>
-                {
-                    if(cb != null)
-                    {
-                        cb.Invoke();
-                    }
-                },
-                this, _shutdown_name, cookie, completedCallback);
-            _iceI_shutdown(context, synchronous, completed);
             return completed;
         }
 
@@ -1627,139 +801,11 @@ namespace Demo
 {
     [_System.Runtime.InteropServices.ComVisible(false)]
     [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-    public abstract class CallBackDisp_ : Ice.ObjectImpl, CallBack
-    {
-        #region Slice operations
-
-        public abstract void Response(string content, Ice.Current current = null);
-
-        public abstract void ResponseNode(string content, global::Demo.MyNode n, Ice.Current current = null);
-
-        #endregion
-
-        #region Slice type-related members
-
-        private static readonly string[] _ids =
-        {
-            "::Demo::CallBack",
-            "::Ice::Object"
-        };
-
-        public override bool ice_isA(string s, Ice.Current current = null)
-        {
-            return _System.Array.BinarySearch(_ids, s, IceUtilInternal.StringUtil.OrdinalStringComparer) >= 0;
-        }
-
-        public override string[] ice_ids(Ice.Current current = null)
-        {
-            return _ids;
-        }
-
-        public override string ice_id(Ice.Current current = null)
-        {
-            return _ids[0];
-        }
-
-        public static new string ice_staticId()
-        {
-            return _ids[0];
-        }
-
-        #endregion
-
-        #region Operation dispatch
-
-        [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-        public static _System.Threading.Tasks.Task<Ice.OutputStream>
-        iceD_Response(CallBack obj, IceInternal.Incoming inS, Ice.Current current)
-        {
-            Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Normal, current.mode);
-            var istr = inS.startReadParams();
-            string iceP_content;
-            iceP_content = istr.readString();
-            inS.endReadParams();
-            obj.Response(iceP_content, current);
-            return inS.setResult(inS.writeEmptyParams());
-        }
-
-        [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-        public static _System.Threading.Tasks.Task<Ice.OutputStream>
-        iceD_ResponseNode(CallBack obj, IceInternal.Incoming inS, Ice.Current current)
-        {
-            Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Normal, current.mode);
-            var istr = inS.startReadParams();
-            string iceP_content;
-            global::Demo.MyNode iceP_n;
-            iceP_content = istr.readString();
-            iceP_n = Demo.NodeHelper.read(istr);
-            inS.endReadParams();
-            obj.ResponseNode(iceP_content, iceP_n, current);
-            return inS.setResult(inS.writeEmptyParams());
-        }
-
-        private static readonly string[] _all =
-        {
-            "Response",
-            "ResponseNode",
-            "ice_id",
-            "ice_ids",
-            "ice_isA",
-            "ice_ping"
-        };
-
-        public override _System.Threading.Tasks.Task<Ice.OutputStream>
-        iceDispatch(IceInternal.Incoming inS, Ice.Current current)
-        {
-            int pos = _System.Array.BinarySearch(_all, current.operation, IceUtilInternal.StringUtil.OrdinalStringComparer);
-            if(pos < 0)
-            {
-                throw new Ice.OperationNotExistException(current.id, current.facet, current.operation);
-            }
-
-            switch(pos)
-            {
-                case 0:
-                {
-                    return iceD_Response(this, inS, current);
-                }
-                case 1:
-                {
-                    return iceD_ResponseNode(this, inS, current);
-                }
-                case 2:
-                {
-                    return Ice.ObjectImpl.iceD_ice_id(this, inS, current);
-                }
-                case 3:
-                {
-                    return Ice.ObjectImpl.iceD_ice_ids(this, inS, current);
-                }
-                case 4:
-                {
-                    return Ice.ObjectImpl.iceD_ice_isA(this, inS, current);
-                }
-                case 5:
-                {
-                    return Ice.ObjectImpl.iceD_ice_ping(this, inS, current);
-                }
-            }
-
-            _System.Diagnostics.Debug.Assert(false);
-            throw new Ice.OperationNotExistException(current.id, current.facet, current.operation);
-        }
-
-        #endregion
-    }
-
-    [_System.Runtime.InteropServices.ComVisible(false)]
-    [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
     public abstract class NodeMapDisp_ : Ice.ObjectImpl, NodeMap
     {
         #region Slice operations
 
-        public abstract void SendGreeting(string msg, Ice.Current current = null);
-
-        public abstract bool CreateMap(string mapName, Ice.Current current = null);
+        public abstract global::Demo.MyNode[] GetAllNodes(Ice.Current current = null);
 
         public abstract bool CreateNode(global::Demo.MyNode n, Ice.Current current = null);
 
@@ -1768,14 +814,6 @@ namespace Demo
         public abstract bool DeleteNode(string nodeId, Ice.Current current = null);
 
         public abstract bool MoveNode(global::Demo.MyNode n, Ice.Current current = null);
-
-        public abstract void SetupCallback(Demo.CallBackPrx cp, Ice.Current current = null);
-
-        public abstract bool Register(string name, Ice.Current current = null);
-
-        public abstract void Unregister(Ice.Current current = null);
-
-        public abstract void shutdown(Ice.Current current = null);
 
         #endregion
 
@@ -1813,29 +851,13 @@ namespace Demo
 
         [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
         public static _System.Threading.Tasks.Task<Ice.OutputStream>
-        iceD_SendGreeting(NodeMap obj, IceInternal.Incoming inS, Ice.Current current)
-        {
-            Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Idempotent, current.mode);
-            var istr = inS.startReadParams();
-            string iceP_msg;
-            iceP_msg = istr.readString();
-            inS.endReadParams();
-            obj.SendGreeting(iceP_msg, current);
-            return inS.setResult(inS.writeEmptyParams());
-        }
-
-        [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-        public static _System.Threading.Tasks.Task<Ice.OutputStream>
-        iceD_CreateMap(NodeMap obj, IceInternal.Incoming inS, Ice.Current current)
+        iceD_GetAllNodes(NodeMap obj, IceInternal.Incoming inS, Ice.Current current)
         {
             Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Normal, current.mode);
-            var istr = inS.startReadParams();
-            string iceP_mapName;
-            iceP_mapName = istr.readString();
-            inS.endReadParams();
-            var ret = obj.CreateMap(iceP_mapName, current);
+            inS.readEmptyParams();
+            var ret = obj.GetAllNodes(current);
             var ostr = inS.startWriteParams();
-            ostr.writeBool(ret);
+            Demo.NodeListHelper.write(ostr, ret);
             inS.endWriteParams(ostr);
             return inS.setResult(ostr);
         }
@@ -1904,71 +926,17 @@ namespace Demo
             return inS.setResult(ostr);
         }
 
-        [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-        public static _System.Threading.Tasks.Task<Ice.OutputStream>
-        iceD_SetupCallback(NodeMap obj, IceInternal.Incoming inS, Ice.Current current)
-        {
-            Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Normal, current.mode);
-            var istr = inS.startReadParams();
-            Demo.CallBackPrx iceP_cp;
-            iceP_cp = Demo.CallBackPrxHelper.read(istr);
-            inS.endReadParams();
-            obj.SetupCallback(iceP_cp, current);
-            return inS.setResult(inS.writeEmptyParams());
-        }
-
-        [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-        public static _System.Threading.Tasks.Task<Ice.OutputStream>
-        iceD_Register(NodeMap obj, IceInternal.Incoming inS, Ice.Current current)
-        {
-            Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Normal, current.mode);
-            var istr = inS.startReadParams();
-            string iceP_name;
-            iceP_name = istr.readString();
-            inS.endReadParams();
-            var ret = obj.Register(iceP_name, current);
-            var ostr = inS.startWriteParams();
-            ostr.writeBool(ret);
-            inS.endWriteParams(ostr);
-            return inS.setResult(ostr);
-        }
-
-        [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-        public static _System.Threading.Tasks.Task<Ice.OutputStream>
-        iceD_Unregister(NodeMap obj, IceInternal.Incoming inS, Ice.Current current)
-        {
-            Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Normal, current.mode);
-            inS.readEmptyParams();
-            obj.Unregister(current);
-            return inS.setResult(inS.writeEmptyParams());
-        }
-
-        [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
-        public static _System.Threading.Tasks.Task<Ice.OutputStream>
-        iceD_shutdown(NodeMap obj, IceInternal.Incoming inS, Ice.Current current)
-        {
-            Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Normal, current.mode);
-            inS.readEmptyParams();
-            obj.shutdown(current);
-            return inS.setResult(inS.writeEmptyParams());
-        }
-
         private static readonly string[] _all =
         {
-            "CreateMap",
             "CreateNode",
             "DeleteNode",
             "EditNode",
+            "GetAllNodes",
             "MoveNode",
-            "Register",
-            "SendGreeting",
-            "SetupCallback",
-            "Unregister",
             "ice_id",
             "ice_ids",
             "ice_isA",
-            "ice_ping",
-            "shutdown"
+            "ice_ping"
         };
 
         public override _System.Threading.Tasks.Task<Ice.OutputStream>
@@ -1984,19 +952,19 @@ namespace Demo
             {
                 case 0:
                 {
-                    return iceD_CreateMap(this, inS, current);
+                    return iceD_CreateNode(this, inS, current);
                 }
                 case 1:
                 {
-                    return iceD_CreateNode(this, inS, current);
+                    return iceD_DeleteNode(this, inS, current);
                 }
                 case 2:
                 {
-                    return iceD_DeleteNode(this, inS, current);
+                    return iceD_EditNode(this, inS, current);
                 }
                 case 3:
                 {
-                    return iceD_EditNode(this, inS, current);
+                    return iceD_GetAllNodes(this, inS, current);
                 }
                 case 4:
                 {
@@ -2004,39 +972,19 @@ namespace Demo
                 }
                 case 5:
                 {
-                    return iceD_Register(this, inS, current);
+                    return Ice.ObjectImpl.iceD_ice_id(this, inS, current);
                 }
                 case 6:
                 {
-                    return iceD_SendGreeting(this, inS, current);
+                    return Ice.ObjectImpl.iceD_ice_ids(this, inS, current);
                 }
                 case 7:
                 {
-                    return iceD_SetupCallback(this, inS, current);
+                    return Ice.ObjectImpl.iceD_ice_isA(this, inS, current);
                 }
                 case 8:
                 {
-                    return iceD_Unregister(this, inS, current);
-                }
-                case 9:
-                {
-                    return Ice.ObjectImpl.iceD_ice_id(this, inS, current);
-                }
-                case 10:
-                {
-                    return Ice.ObjectImpl.iceD_ice_ids(this, inS, current);
-                }
-                case 11:
-                {
-                    return Ice.ObjectImpl.iceD_ice_isA(this, inS, current);
-                }
-                case 12:
-                {
                     return Ice.ObjectImpl.iceD_ice_ping(this, inS, current);
-                }
-                case 13:
-                {
-                    return iceD_shutdown(this, inS, current);
                 }
             }
 

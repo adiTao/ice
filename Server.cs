@@ -6,6 +6,7 @@
 
 using System;
 using System.Reflection;
+using Demo;
 
 public class Server
 {
@@ -18,10 +19,16 @@ public class Server
                 Console.Error.WriteLine(appName() + ": too many arguments");
                 return 1;
             }
+            //±Ò¥Înoe4j
+            Neo4jConfig.Register();
 
-            var adapter = communicator().createObjectAdapter("Node");
-            adapter.add(new NodeMapI(), Ice.Util.stringToIdentity("node"));
-            adapter.activate();
+            var nodeAdapter = communicator().createObjectAdapter("Node");
+            nodeAdapter.add(new NodeMapI(), Ice.Util.stringToIdentity("node"));
+            nodeAdapter.activate();
+
+            var userAdapter = communicator().createObjectAdapter("User");
+            userAdapter.add(new UserMapI(), Ice.Util.stringToIdentity("user"));
+            userAdapter.activate();
             communicator().waitForShutdown();
             return 0;
         }

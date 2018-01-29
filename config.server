@@ -1,4 +1,5 @@
 Node.Endpoints=tcp -h localhost -p 10000
+User.Endpoints=tcp -h localhost -p 10001
 
 #
 # Warn about connection exceptions.

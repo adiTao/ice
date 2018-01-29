@@ -8,6 +8,7 @@ using Demo;
 using System;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading;
 
@@ -31,10 +32,16 @@ public class Client : Ice.Application
             Console.Error.WriteLine("invalid proxy");
             return 1;
         }
+        var userMap = UserMapPrxHelper.checkedCast(communicator().propertyToProxy("User.Proxy"));
+        if (userMap == null)
+        {
+            Console.Error.WriteLine("invalid proxy");
+            return 1;
+        }
         Console.WriteLine("輸入名字：");
         string user_name = Console.ReadLine();
 
-        if (nodeMap.Register(user_name) == false)
+        if (userMap.Register(user_name) == false)
         {
             System.Console.WriteLine("已被註冊!");
             Thread.Sleep(2000);
@@ -42,18 +49,18 @@ public class Client : Ice.Application
         }
 
         //註冊回傳
-        Ice.ObjectAdapter adapter = communicator().createObjectAdapter("Callback.Client");
-        adapter.add(new CallBackI(), Ice.Util.stringToIdentity("callbackReceiver"));
+        Ice.ObjectAdapter adapter = communicator().createObjectAdapter("UserCallback.Client");
+        adapter.add(new UserCallBackI(), Ice.Util.stringToIdentity("callbackReceiver"));
         adapter.activate();
 
 
-        CallBackPrx callbackPrx = CallBackPrxHelper.uncheckedCast(adapter.createProxy(Ice.Util.stringToIdentity("callbackReceiver")));
+        UserCallBackPrx callbackPrx = UserCallBackPrxHelper.uncheckedCast(adapter.createProxy(Ice.Util.stringToIdentity("callbackReceiver")));
         Dictionary<string, string> ctx = new Dictionary<string, string>();
         ctx.Add("user_name", user_name);
-        nodeMap.SetupCallback(callbackPrx, ctx);
+        userMap.SetupCallback(callbackPrx, ctx);
 
         menu();
-
+        MyNode[] allnodes = new MyNode[10000];
         string line = null;
         do
         {
@@ -70,15 +77,86 @@ public class Client : Ice.Application
                 {
                     Console.WriteLine("輸入訊息：");
                     string msg = Console.ReadLine();
-                    nodeMap.SendGreeting(msg, ctx);
+                    userMap.SendGreeting(msg, ctx);
+                    Console.Out.Flush();
+                }
+                if (line.Equals("l"))
+                {
+                    allnodes = nodeMap.GetAllNodes(ctx);
+                    foreach (var node in allnodes)
+                    {
+                        Console.WriteLine($"Id:{node.NodeId}   NodeText:{node.NodeText}   ParetnId:{node.ParentId}");
+                    }
+                    Console.Out.Flush();
+                }
+                if (line.Equals("c"))
+                {
+                    Console.WriteLine("Node Id：");
+                    string id = Console.ReadLine();
+                    Console.WriteLine("節點描述：");
+                    string text = Console.ReadLine();
+                    MyNode node = new MyNode();
+                    node.NodeId = id;
+                    node.NodeText = text;
+                    node.ParentId = "root";
+                    if (nodeMap.GetAllNodes(ctx).Length > 0)
+                    {
+                        Console.WriteLine("父節點 Id：");
+                        node.ParentId = Console.ReadLine();
+                    }
+                    nodeMap.CreateNode(node, ctx);
+                    Console.Out.Flush();
+                }
+                if (line.Equals("e"))
+                {
+                    Console.WriteLine("Node Id：");
+                    string id = Console.ReadLine();
+                    MyNode editNode = nodeMap.GetAllNodes(ctx).FirstOrDefault(p => p.NodeId == id);
+                    if (editNode == null)
+                    {
+                        Console.WriteLine("此Id不存在");
+                    }
+                    else
+                    {
+                        Console.WriteLine("節點描述：");
+                        editNode.NodeText = Console.ReadLine();
+                        nodeMap.EditNode(editNode, ctx);
+                    }
+
+                    Console.Out.Flush();
+                }
+                if (line.Equals("m"))
+                {
+                    Console.WriteLine("Node Id：");
+                    string id = Console.ReadLine();
+                    MyNode editNode = nodeMap.GetAllNodes(ctx).FirstOrDefault(p => p.NodeId == id);
+                    if (editNode == null)
+                    {
+                        Console.WriteLine("此Id不存在");
+                    }
+                    else
+                    {
+                        Console.WriteLine("父節點 Id：");
+                        editNode.ParentId = Console.ReadLine();
+                        nodeMap.MoveNode(editNode, ctx);
+                    }
+
+                    Console.Out.Flush();
+                }
+                if (line.Equals("r"))
+                {
+                    Console.WriteLine("Node Id：");
+                    string id = Console.ReadLine();
+                    nodeMap.DeleteNode(id, ctx);
+                    Console.Out.Flush();
                 }
                 else if(line.Equals("s"))
                 {
-                    nodeMap.shutdown();
+                    userMap.shutdown();
                 }
                 else if(line.Equals("x"))
                 {
-                    nodeMap.Unregister(ctx);
+                    userMap.Unregister(ctx);
                     // Nothing to do
                 }
                 else if(line.Equals("?"))
@@ -87,8 +165,8 @@ public class Client : Ice.Application
                 }
                 else
                 {
-                    Console.WriteLine("unknown command `" + line + "'");
-                    menu();
+                    //Console.WriteLine("unknown command `" + line + "'");
+                    //menu();
                 }
             }
             catch(Exception ex)
@@ -105,6 +183,11 @@ public class Client : Ice.Application
     {
         Console.Write(
             "g: 傳訊息\n" +
+            "l: 列出節點\n" +
+            "c: 新增節點\n" +
+            "e: 編輯節點\n" +
+            "r: 刪除節點\n" +
+            "m: 搬遷節點\n" +
             "s: shutdown server\n" +
             "x: exit\n" +
             "?: help\n");

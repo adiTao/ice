@@ -106,17 +106,21 @@
     <Compile Include="..\..\Client.cs">
       <Link>Client.cs</Link>
     </Compile>
-    <Compile Include="..\..\CallBackI.cs">
-      <Link>CallBackI.cs</Link>
+    <Compile Include="..\..\UserCallBackI.cs">
+      <Link>UserCallBackI.cs</Link>
     </Compile>
     <None Include="..\..\NodeMap.ice">
       <Link>NodeMap.ice</Link>
+    </None>
+    <None Include="..\..\UserMap.ice">
+      <Link>UserMap.ice</Link>
     </None>
     <None Include="..\..\config.client">
       <Link>config.client</Link>
     </None>
     <None Include="packages.config" />
     <Compile Include="generated\NodeMap.cs" />
+    <Compile Include="generated\UserMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>

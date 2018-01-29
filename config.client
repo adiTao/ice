@@ -1,5 +1,6 @@
 Node.Proxy=node:tcp -h localhost -p 10000
-Callback.Client.Endpoints=tcp:udp
+User.Proxy=user:tcp -h localhost -p 10001
+UserCallback.Client.Endpoints=tcp:udp
 
 #
 # Warn about connection exceptions.

@@ -4,7 +4,7 @@ namespace Demo
 {
     class User
     {
-        public User(string name, CallBackPrx cp)
+        public User(string name, UserCallBackPrx cp)
         {
             _name = name;
             _Cp = cp;
@@ -22,7 +22,7 @@ namespace Demo
             }
         }
 
-        public CallBackPrx Cp
+        public UserCallBackPrx Cp
         {
             get
             {
@@ -55,7 +55,7 @@ namespace Demo
         }
 
         private string _name;
-        private CallBackPrx _Cp;
+        private UserCallBackPrx _Cp;
     }
 
     //
