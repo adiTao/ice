@@ -115,10 +115,14 @@
     <None Include="..\..\UserMap.ice">
       <Link>UserMap.ice</Link>
     </None>
+    <None Include="..\..\GraphMap.ice">
+      <Link>GraphMap.ice</Link>
+    </None>
     <None Include="..\..\config.client">
       <Link>config.client</Link>
     </None>
     <None Include="packages.config" />
+    <Compile Include="generated\GraphMap.cs" />
     <Compile Include="generated\NodeMap.cs" />
     <Compile Include="generated\UserMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -29,6 +29,11 @@ public class Server
             var userAdapter = communicator().createObjectAdapter("User");
             userAdapter.add(new UserMapI(), Ice.Util.stringToIdentity("user"));
             userAdapter.activate();
+
+            var graphAdapter = communicator().createObjectAdapter("Graph");
+            graphAdapter.add(new GraphMapI(), Ice.Util.stringToIdentity("graph"));
+            graphAdapter.activate();
+
             communicator().waitForShutdown();
             return 0;
         }

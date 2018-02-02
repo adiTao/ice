@@ -1,5 +1,6 @@
 Node.Proxy=node:tcp -h localhost -p 10000
 User.Proxy=user:tcp -h localhost -p 10001
+Graph.Proxy=graph:tcp -h localhost -p 10002
 UserCallback.Client.Endpoints=tcp:udp
 
 #

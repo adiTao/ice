@@ -16,11 +16,11 @@ public class NodeMapI : NodeMapDisp_
             .Match("(node:Node)")
             .Return(node => node.As<MyNode>());
         var data = query.Results.ToArray();
-
+        
         return data;
     }
 
-    public override bool CreateNode(MyNode newNode, Ice.Current current)
+    public override bool CreateNode(string graphName, MyNode newNode, Ice.Current current)
     {
         if (newNode.ParentId == "root") //Root
         {
@@ -44,16 +44,25 @@ public class NodeMapI : NodeMapDisp_
                 .WithParam("newNode", newNode)
                 .ExecuteWithoutResults();
         }
+
+        Neo4jConfig.GraphClient.Cypher
+            .Match("(node:Node)", "(graph:Graph)")
+            .Where((MyNode node) => node.NodeId == newNode.NodeId)
+            .AndWhere((MyGraph graph) => graph.GraphName == graphName)
+            .Create("(graph)-[:CONTAINS]->(node)")
+            .ExecuteWithoutResults();
+
         // 向其他人廣播
         BroadcastNode("新建節點", newNode, current);
         return true;
     }
 
-    public override bool EditNode(MyNode editNode, Ice.Current current)
+    public override bool EditNode(string graphName, MyNode editNode, Ice.Current current)
     {
         Neo4jConfig.GraphClient.Cypher
-            .Match("(node:Node)")
+            .Match("(node:Node)-[r]-(graph:Graph)")
             .Where((MyNode node) => node.NodeId == editNode.NodeId)
+            .AndWhere((MyGraph graph) => graph.GraphName == graphName)
             .Set("node.NodeText = {nodeText}")
             .WithParam("nodeText", editNode.NodeText)
             .ExecuteWithoutResults();
@@ -62,11 +71,12 @@ public class NodeMapI : NodeMapDisp_
         return true;
     }
 
-    public override bool DeleteNode(string nodeId, Ice.Current current)
+    public override bool DeleteNode(string graphName, string nodeId, Ice.Current current)
     {
         Neo4jConfig.GraphClient.Cypher
-            .Match("(node:Node)")
+            .Match("(node:Node)-[r]-(graph:Graph)")
             .Where((MyNode node) => node.NodeId == nodeId)
+            .AndWhere((MyGraph graph) => graph.GraphName == graphName)
             .DetachDelete("node")
             .ExecuteWithoutResults();
 
@@ -76,11 +86,11 @@ public class NodeMapI : NodeMapDisp_
         return true;
     }
 
-    public override bool MoveNode(MyNode moveNode, Ice.Current current)
+    public override bool MoveNode(string graphName, MyNode moveNode, Ice.Current current)
     {
         //Remove relation
         Neo4jConfig.GraphClient.Cypher
-            .OptionalMatch("(node:Node)<-[r]-()")
+            .OptionalMatch("(node:Node)<-[r:HASCHILD]-()")
             .Where((MyNode node) => node.NodeId == moveNode.NodeId)
             .Delete("r")
             .ExecuteWithoutResults();
@@ -115,7 +125,7 @@ public class NodeMapI : NodeMapDisp_
             {
                 continue;
             }
-            user.Cp.ResponseNode(msg, node.NodeId, node.NodeText, node.ParentId, current.ctx);
+            user.Cp.ResponseNode(msg, node, current.ctx);
         }
     }
 

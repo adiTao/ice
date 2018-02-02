@@ -69,6 +69,9 @@ namespace Demo
     public delegate void Callback_UserCallBack_ResponseNode();
 
     [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
+    public delegate void Callback_UserCallBack_ResponseGraph();
+
+    [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
     public delegate void Callback_UserMap_SendGreeting();
 
     [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
@@ -101,17 +104,29 @@ namespace Demo
 
         void end_Response(Ice.AsyncResult asyncResult);
 
-        void ResponseNode(string content, string nodeId, string nodeText, string parentId, Ice.OptionalContext context = new Ice.OptionalContext());
+        void ResponseNode(string content, global::Demo.MyNode node, Ice.OptionalContext context = new Ice.OptionalContext());
 
-        _System.Threading.Tasks.Task ResponseNodeAsync(string content, string nodeId, string nodeText, string parentId, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
+        _System.Threading.Tasks.Task ResponseNodeAsync(string content, global::Demo.MyNode node, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
 
-        Ice.AsyncResult<Demo.Callback_UserCallBack_ResponseNode> begin_ResponseNode(string content, string nodeId, string nodeText, string parentId, Ice.OptionalContext context = new Ice.OptionalContext());
+        Ice.AsyncResult<Demo.Callback_UserCallBack_ResponseNode> begin_ResponseNode(string content, global::Demo.MyNode node, Ice.OptionalContext context = new Ice.OptionalContext());
 
-        Ice.AsyncResult begin_ResponseNode(string content, string nodeId, string nodeText, string parentId, Ice.AsyncCallback callback, object cookie);
+        Ice.AsyncResult begin_ResponseNode(string content, global::Demo.MyNode node, Ice.AsyncCallback callback, object cookie);
 
-        Ice.AsyncResult begin_ResponseNode(string content, string nodeId, string nodeText, string parentId, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
+        Ice.AsyncResult begin_ResponseNode(string content, global::Demo.MyNode node, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
 
         void end_ResponseNode(Ice.AsyncResult asyncResult);
+
+        void ResponseGraph(string content, string graph, Ice.OptionalContext context = new Ice.OptionalContext());
+
+        _System.Threading.Tasks.Task ResponseGraphAsync(string content, string graph, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
+
+        Ice.AsyncResult<Demo.Callback_UserCallBack_ResponseGraph> begin_ResponseGraph(string content, string graph, Ice.OptionalContext context = new Ice.OptionalContext());
+
+        Ice.AsyncResult begin_ResponseGraph(string content, string graph, Ice.AsyncCallback callback, object cookie);
+
+        Ice.AsyncResult begin_ResponseGraph(string content, string graph, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
+
+        void end_ResponseGraph(Ice.AsyncResult asyncResult);
     }
 
     [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
@@ -188,7 +203,10 @@ namespace Demo
         void Response(string content, Ice.Current current = null);
 
         [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-        void ResponseNode(string content, string nodeId, string nodeText, string parentId, Ice.Current current = null);
+        void ResponseNode(string content, global::Demo.MyNode node, Ice.Current current = null);
+
+        [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
+        void ResponseGraph(string content, string graph, Ice.Current current = null);
     }
 
     [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
@@ -240,11 +258,23 @@ namespace Demo
             }
         }
 
-        public void ResponseNode(string content, string nodeId, string nodeText, string parentId, Ice.OptionalContext context = new Ice.OptionalContext())
+        public void ResponseGraph(string content, string graph, Ice.OptionalContext context = new Ice.OptionalContext())
         {
             try
             {
-                _iceI_ResponseNodeAsync(content, nodeId, nodeText, parentId, context, null, _System.Threading.CancellationToken.None, true).Wait();
+                _iceI_ResponseGraphAsync(content, graph, context, null, _System.Threading.CancellationToken.None, true).Wait();
+            }
+            catch(_System.AggregateException ex_)
+            {
+                throw ex_.InnerException;
+            }
+        }
+
+        public void ResponseNode(string content, global::Demo.MyNode node, Ice.OptionalContext context = new Ice.OptionalContext())
+        {
+            try
+            {
+                _iceI_ResponseNodeAsync(content, node, context, null, _System.Threading.CancellationToken.None, true).Wait();
             }
             catch(_System.AggregateException ex_)
             {
@@ -285,21 +315,51 @@ namespace Demo
                 });
         }
 
-        public _System.Threading.Tasks.Task ResponseNodeAsync(string content, string nodeId, string nodeText, string parentId, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
+        public _System.Threading.Tasks.Task ResponseGraphAsync(string content, string graph, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
         {
-            return _iceI_ResponseNodeAsync(content, nodeId, nodeText, parentId, context, progress, cancel, false);
+            return _iceI_ResponseGraphAsync(content, graph, context, progress, cancel, false);
         }
 
-        private _System.Threading.Tasks.Task _iceI_ResponseNodeAsync(string iceP_content, string iceP_nodeId, string iceP_nodeText, string iceP_parentId, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
+        private _System.Threading.Tasks.Task _iceI_ResponseGraphAsync(string iceP_content, string iceP_graph, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
         {
             var completed = new IceInternal.OperationTaskCompletionCallback<object>(progress, cancel);
-            _iceI_ResponseNode(iceP_content, iceP_nodeId, iceP_nodeText, iceP_parentId, context, synchronous, completed);
+            _iceI_ResponseGraph(iceP_content, iceP_graph, context, synchronous, completed);
+            return completed.Task;
+        }
+
+        private const string _ResponseGraph_name = "ResponseGraph";
+
+        private void _iceI_ResponseGraph(string iceP_content, string iceP_graph, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
+        {
+            var outAsync = getOutgoingAsync<object>(completed);
+            outAsync.invoke(
+                _ResponseGraph_name,
+                Ice.OperationMode.Normal,
+                Ice.FormatType.DefaultFormat,
+                context,
+                synchronous,
+                write: (Ice.OutputStream ostr) =>
+                {
+                    ostr.writeString(iceP_content);
+                    ostr.writeString(iceP_graph);
+                });
+        }
+
+        public _System.Threading.Tasks.Task ResponseNodeAsync(string content, global::Demo.MyNode node, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
+        {
+            return _iceI_ResponseNodeAsync(content, node, context, progress, cancel, false);
+        }
+
+        private _System.Threading.Tasks.Task _iceI_ResponseNodeAsync(string iceP_content, global::Demo.MyNode iceP_node, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
+        {
+            var completed = new IceInternal.OperationTaskCompletionCallback<object>(progress, cancel);
+            _iceI_ResponseNode(iceP_content, iceP_node, context, synchronous, completed);
             return completed.Task;
         }
 
         private const string _ResponseNode_name = "ResponseNode";
 
-        private void _iceI_ResponseNode(string iceP_content, string iceP_nodeId, string iceP_nodeText, string iceP_parentId, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
+        private void _iceI_ResponseNode(string iceP_content, global::Demo.MyNode iceP_node, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
         {
             var outAsync = getOutgoingAsync<object>(completed);
             outAsync.invoke(
@@ -311,9 +371,7 @@ namespace Demo
                 write: (Ice.OutputStream ostr) =>
                 {
                     ostr.writeString(iceP_content);
-                    ostr.writeString(iceP_nodeId);
-                    ostr.writeString(iceP_nodeText);
-                    ostr.writeString(iceP_parentId);
+                    Demo.NodeHelper.write(ostr, iceP_node);
                 });
         }
 
@@ -357,19 +415,55 @@ namespace Demo
             return completed;
         }
 
-        public Ice.AsyncResult<Demo.Callback_UserCallBack_ResponseNode> begin_ResponseNode(string content, string nodeId, string nodeText, string parentId, Ice.OptionalContext context = new Ice.OptionalContext())
+        public Ice.AsyncResult<Demo.Callback_UserCallBack_ResponseGraph> begin_ResponseGraph(string content, string graph, Ice.OptionalContext context = new Ice.OptionalContext())
         {
-            return begin_ResponseNode(content, nodeId, nodeText, parentId, context, null, null, false);
+            return begin_ResponseGraph(content, graph, context, null, null, false);
         }
 
-        public Ice.AsyncResult begin_ResponseNode(string content, string nodeId, string nodeText, string parentId, Ice.AsyncCallback callback, object cookie)
+        public Ice.AsyncResult begin_ResponseGraph(string content, string graph, Ice.AsyncCallback callback, object cookie)
         {
-            return begin_ResponseNode(content, nodeId, nodeText, parentId, new Ice.OptionalContext(), callback, cookie, false);
+            return begin_ResponseGraph(content, graph, new Ice.OptionalContext(), callback, cookie, false);
         }
 
-        public Ice.AsyncResult begin_ResponseNode(string content, string nodeId, string nodeText, string parentId, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
+        public Ice.AsyncResult begin_ResponseGraph(string content, string graph, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
         {
-            return begin_ResponseNode(content, nodeId, nodeText, parentId, context, callback, cookie, false);
+            return begin_ResponseGraph(content, graph, context, callback, cookie, false);
+        }
+
+        public void end_ResponseGraph(Ice.AsyncResult asyncResult)
+        {
+            var resultI_ = IceInternal.AsyncResultI.check(asyncResult, this, _ResponseGraph_name);
+            ((IceInternal.OutgoingAsyncT<object>)resultI_.OutgoingAsync).getResult(resultI_.wait());
+        }
+
+        private Ice.AsyncResult<Demo.Callback_UserCallBack_ResponseGraph> begin_ResponseGraph(string iceP_content, string iceP_graph, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
+        {
+            var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_UserCallBack_ResponseGraph, object>(
+                (Demo.Callback_UserCallBack_ResponseGraph cb, object ret) =>
+                {
+                    if(cb != null)
+                    {
+                        cb.Invoke();
+                    }
+                },
+                this, _ResponseGraph_name, cookie, completedCallback);
+            _iceI_ResponseGraph(iceP_content, iceP_graph, context, synchronous, completed);
+            return completed;
+        }
+
+        public Ice.AsyncResult<Demo.Callback_UserCallBack_ResponseNode> begin_ResponseNode(string content, global::Demo.MyNode node, Ice.OptionalContext context = new Ice.OptionalContext())
+        {
+            return begin_ResponseNode(content, node, context, null, null, false);
+        }
+
+        public Ice.AsyncResult begin_ResponseNode(string content, global::Demo.MyNode node, Ice.AsyncCallback callback, object cookie)
+        {
+            return begin_ResponseNode(content, node, new Ice.OptionalContext(), callback, cookie, false);
+        }
+
+        public Ice.AsyncResult begin_ResponseNode(string content, global::Demo.MyNode node, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
+        {
+            return begin_ResponseNode(content, node, context, callback, cookie, false);
         }
 
         public void end_ResponseNode(Ice.AsyncResult asyncResult)
@@ -378,7 +472,7 @@ namespace Demo
             ((IceInternal.OutgoingAsyncT<object>)resultI_.OutgoingAsync).getResult(resultI_.wait());
         }
 
-        private Ice.AsyncResult<Demo.Callback_UserCallBack_ResponseNode> begin_ResponseNode(string iceP_content, string iceP_nodeId, string iceP_nodeText, string iceP_parentId, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
+        private Ice.AsyncResult<Demo.Callback_UserCallBack_ResponseNode> begin_ResponseNode(string iceP_content, global::Demo.MyNode iceP_node, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
         {
             var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_UserCallBack_ResponseNode, object>(
                 (Demo.Callback_UserCallBack_ResponseNode cb, object ret) =>
@@ -389,7 +483,7 @@ namespace Demo
                     }
                 },
                 this, _ResponseNode_name, cookie, completedCallback);
-            _iceI_ResponseNode(iceP_content, iceP_nodeId, iceP_nodeText, iceP_parentId, context, synchronous, completed);
+            _iceI_ResponseNode(iceP_content, iceP_node, context, synchronous, completed);
             return completed;
         }
 
@@ -670,7 +764,7 @@ namespace Demo
             var outAsync = getOutgoingAsync<object>(completed);
             outAsync.invoke(
                 _SendGreeting_name,
-                Ice.OperationMode.Idempotent,
+                Ice.OperationMode.Normal,
                 Ice.FormatType.DefaultFormat,
                 context,
                 synchronous,
@@ -1099,7 +1193,9 @@ namespace Demo
 
         public abstract void Response(string content, Ice.Current current = null);
 
-        public abstract void ResponseNode(string content, string nodeId, string nodeText, string parentId, Ice.Current current = null);
+        public abstract void ResponseNode(string content, global::Demo.MyNode node, Ice.Current current = null);
+
+        public abstract void ResponseGraph(string content, string graph, Ice.Current current = null);
 
         #endregion
 
@@ -1155,21 +1251,33 @@ namespace Demo
             Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Normal, current.mode);
             var istr = inS.startReadParams();
             string iceP_content;
-            string iceP_nodeId;
-            string iceP_nodeText;
-            string iceP_parentId;
+            global::Demo.MyNode iceP_node;
             iceP_content = istr.readString();
-            iceP_nodeId = istr.readString();
-            iceP_nodeText = istr.readString();
-            iceP_parentId = istr.readString();
+            iceP_node = Demo.NodeHelper.read(istr);
             inS.endReadParams();
-            obj.ResponseNode(iceP_content, iceP_nodeId, iceP_nodeText, iceP_parentId, current);
+            obj.ResponseNode(iceP_content, iceP_node, current);
+            return inS.setResult(inS.writeEmptyParams());
+        }
+
+        [_System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1011")]
+        public static _System.Threading.Tasks.Task<Ice.OutputStream>
+        iceD_ResponseGraph(UserCallBack obj, IceInternal.Incoming inS, Ice.Current current)
+        {
+            Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Normal, current.mode);
+            var istr = inS.startReadParams();
+            string iceP_content;
+            string iceP_graph;
+            iceP_content = istr.readString();
+            iceP_graph = istr.readString();
+            inS.endReadParams();
+            obj.ResponseGraph(iceP_content, iceP_graph, current);
             return inS.setResult(inS.writeEmptyParams());
         }
 
         private static readonly string[] _all =
         {
             "Response",
+            "ResponseGraph",
             "ResponseNode",
             "ice_id",
             "ice_ids",
@@ -1194,21 +1302,25 @@ namespace Demo
                 }
                 case 1:
                 {
-                    return iceD_ResponseNode(this, inS, current);
+                    return iceD_ResponseGraph(this, inS, current);
                 }
                 case 2:
                 {
-                    return Ice.ObjectImpl.iceD_ice_id(this, inS, current);
+                    return iceD_ResponseNode(this, inS, current);
                 }
                 case 3:
                 {
-                    return Ice.ObjectImpl.iceD_ice_ids(this, inS, current);
+                    return Ice.ObjectImpl.iceD_ice_id(this, inS, current);
                 }
                 case 4:
                 {
-                    return Ice.ObjectImpl.iceD_ice_isA(this, inS, current);
+                    return Ice.ObjectImpl.iceD_ice_ids(this, inS, current);
                 }
                 case 5:
+                {
+                    return Ice.ObjectImpl.iceD_ice_isA(this, inS, current);
+                }
+                case 6:
                 {
                     return Ice.ObjectImpl.iceD_ice_ping(this, inS, current);
                 }
@@ -1275,7 +1387,7 @@ namespace Demo
         public static _System.Threading.Tasks.Task<Ice.OutputStream>
         iceD_SendGreeting(UserMap obj, IceInternal.Incoming inS, Ice.Current current)
         {
-            Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Idempotent, current.mode);
+            Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Normal, current.mode);
             var istr = inS.startReadParams();
             string iceP_msg;
             iceP_msg = istr.readString();

@@ -80,51 +80,51 @@ namespace Demo
 
         global::Demo.MyNode[] end_GetAllNodes(Ice.AsyncResult asyncResult);
 
-        bool CreateNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
+        bool CreateNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
 
-        _System.Threading.Tasks.Task<bool> CreateNodeAsync(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
+        _System.Threading.Tasks.Task<bool> CreateNodeAsync(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
 
-        Ice.AsyncResult<Demo.Callback_NodeMap_CreateNode> begin_CreateNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
+        Ice.AsyncResult<Demo.Callback_NodeMap_CreateNode> begin_CreateNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
 
-        Ice.AsyncResult begin_CreateNode(global::Demo.MyNode n, Ice.AsyncCallback callback, object cookie);
+        Ice.AsyncResult begin_CreateNode(string graphName, global::Demo.MyNode n, Ice.AsyncCallback callback, object cookie);
 
-        Ice.AsyncResult begin_CreateNode(global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
+        Ice.AsyncResult begin_CreateNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
 
         bool end_CreateNode(Ice.AsyncResult asyncResult);
 
-        bool EditNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
+        bool EditNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
 
-        _System.Threading.Tasks.Task<bool> EditNodeAsync(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
+        _System.Threading.Tasks.Task<bool> EditNodeAsync(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
 
-        Ice.AsyncResult<Demo.Callback_NodeMap_EditNode> begin_EditNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
+        Ice.AsyncResult<Demo.Callback_NodeMap_EditNode> begin_EditNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
 
-        Ice.AsyncResult begin_EditNode(global::Demo.MyNode n, Ice.AsyncCallback callback, object cookie);
+        Ice.AsyncResult begin_EditNode(string graphName, global::Demo.MyNode n, Ice.AsyncCallback callback, object cookie);
 
-        Ice.AsyncResult begin_EditNode(global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
+        Ice.AsyncResult begin_EditNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
 
         bool end_EditNode(Ice.AsyncResult asyncResult);
 
-        bool DeleteNode(string nodeId, Ice.OptionalContext context = new Ice.OptionalContext());
+        bool DeleteNode(string graphName, string nodeId, Ice.OptionalContext context = new Ice.OptionalContext());
 
-        _System.Threading.Tasks.Task<bool> DeleteNodeAsync(string nodeId, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
+        _System.Threading.Tasks.Task<bool> DeleteNodeAsync(string graphName, string nodeId, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
 
-        Ice.AsyncResult<Demo.Callback_NodeMap_DeleteNode> begin_DeleteNode(string nodeId, Ice.OptionalContext context = new Ice.OptionalContext());
+        Ice.AsyncResult<Demo.Callback_NodeMap_DeleteNode> begin_DeleteNode(string graphName, string nodeId, Ice.OptionalContext context = new Ice.OptionalContext());
 
-        Ice.AsyncResult begin_DeleteNode(string nodeId, Ice.AsyncCallback callback, object cookie);
+        Ice.AsyncResult begin_DeleteNode(string graphName, string nodeId, Ice.AsyncCallback callback, object cookie);
 
-        Ice.AsyncResult begin_DeleteNode(string nodeId, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
+        Ice.AsyncResult begin_DeleteNode(string graphName, string nodeId, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
 
         bool end_DeleteNode(Ice.AsyncResult asyncResult);
 
-        bool MoveNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
+        bool MoveNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
 
-        _System.Threading.Tasks.Task<bool> MoveNodeAsync(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
+        _System.Threading.Tasks.Task<bool> MoveNodeAsync(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken());
 
-        Ice.AsyncResult<Demo.Callback_NodeMap_MoveNode> begin_MoveNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
+        Ice.AsyncResult<Demo.Callback_NodeMap_MoveNode> begin_MoveNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext());
 
-        Ice.AsyncResult begin_MoveNode(global::Demo.MyNode n, Ice.AsyncCallback callback, object cookie);
+        Ice.AsyncResult begin_MoveNode(string graphName, global::Demo.MyNode n, Ice.AsyncCallback callback, object cookie);
 
-        Ice.AsyncResult begin_MoveNode(global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
+        Ice.AsyncResult begin_MoveNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie);
 
         bool end_MoveNode(Ice.AsyncResult asyncResult);
     }
@@ -139,16 +139,16 @@ namespace Demo
         global::Demo.MyNode[] GetAllNodes(Ice.Current current = null);
 
         [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-        bool CreateNode(global::Demo.MyNode n, Ice.Current current = null);
+        bool CreateNode(string graphName, global::Demo.MyNode n, Ice.Current current = null);
 
         [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-        bool EditNode(global::Demo.MyNode n, Ice.Current current = null);
+        bool EditNode(string graphName, global::Demo.MyNode n, Ice.Current current = null);
 
         [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-        bool DeleteNode(string nodeId, Ice.Current current = null);
+        bool DeleteNode(string graphName, string nodeId, Ice.Current current = null);
 
         [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-        bool MoveNode(global::Demo.MyNode n, Ice.Current current = null);
+        bool MoveNode(string graphName, global::Demo.MyNode n, Ice.Current current = null);
     }
 }
 
@@ -171,7 +171,7 @@ namespace Demo
     }
 
     [_System.CodeDom.Compiler.GeneratedCodeAttribute("slice2cs", "3.7.0")]
-    public sealed class NodeListHelper
+    public sealed class NodeSeqHelper
     {
         public static void write(Ice.OutputStream ostr, global::Demo.MyNode[] v)
         {
@@ -219,11 +219,11 @@ namespace Demo
 
         #region Synchronous operations
 
-        public bool CreateNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
+        public bool CreateNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
         {
             try
             {
-                return _iceI_CreateNodeAsync(n, context, null, _System.Threading.CancellationToken.None, true).Result;
+                return _iceI_CreateNodeAsync(graphName, n, context, null, _System.Threading.CancellationToken.None, true).Result;
             }
             catch(_System.AggregateException ex_)
             {
@@ -231,11 +231,11 @@ namespace Demo
             }
         }
 
-        public bool DeleteNode(string nodeId, Ice.OptionalContext context = new Ice.OptionalContext())
+        public bool DeleteNode(string graphName, string nodeId, Ice.OptionalContext context = new Ice.OptionalContext())
         {
             try
             {
-                return _iceI_DeleteNodeAsync(nodeId, context, null, _System.Threading.CancellationToken.None, true).Result;
+                return _iceI_DeleteNodeAsync(graphName, nodeId, context, null, _System.Threading.CancellationToken.None, true).Result;
             }
             catch(_System.AggregateException ex_)
             {
@@ -243,11 +243,11 @@ namespace Demo
             }
         }
 
-        public bool EditNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
+        public bool EditNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
         {
             try
             {
-                return _iceI_EditNodeAsync(n, context, null, _System.Threading.CancellationToken.None, true).Result;
+                return _iceI_EditNodeAsync(graphName, n, context, null, _System.Threading.CancellationToken.None, true).Result;
             }
             catch(_System.AggregateException ex_)
             {
@@ -267,11 +267,11 @@ namespace Demo
             }
         }
 
-        public bool MoveNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
+        public bool MoveNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
         {
             try
             {
-                return _iceI_MoveNodeAsync(n, context, null, _System.Threading.CancellationToken.None, true).Result;
+                return _iceI_MoveNodeAsync(graphName, n, context, null, _System.Threading.CancellationToken.None, true).Result;
             }
             catch(_System.AggregateException ex_)
             {
@@ -283,22 +283,22 @@ namespace Demo
 
         #region Async Task operations
 
-        public _System.Threading.Tasks.Task<bool> CreateNodeAsync(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
+        public _System.Threading.Tasks.Task<bool> CreateNodeAsync(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
         {
-            return _iceI_CreateNodeAsync(n, context, progress, cancel, false);
+            return _iceI_CreateNodeAsync(graphName, n, context, progress, cancel, false);
         }
 
-        private _System.Threading.Tasks.Task<bool> _iceI_CreateNodeAsync(global::Demo.MyNode iceP_n, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
+        private _System.Threading.Tasks.Task<bool> _iceI_CreateNodeAsync(string iceP_graphName, global::Demo.MyNode iceP_n, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
         {
             iceCheckTwowayOnly(_CreateNode_name);
             var completed = new IceInternal.OperationTaskCompletionCallback<bool>(progress, cancel);
-            _iceI_CreateNode(iceP_n, context, synchronous, completed);
+            _iceI_CreateNode(iceP_graphName, iceP_n, context, synchronous, completed);
             return completed.Task;
         }
 
         private const string _CreateNode_name = "CreateNode";
 
-        private void _iceI_CreateNode(global::Demo.MyNode iceP_n, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
+        private void _iceI_CreateNode(string iceP_graphName, global::Demo.MyNode iceP_n, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
         {
             var outAsync = getOutgoingAsync<bool>(completed);
             outAsync.invoke(
@@ -309,6 +309,7 @@ namespace Demo
                 synchronous,
                 write: (Ice.OutputStream ostr) =>
                 {
+                    ostr.writeString(iceP_graphName);
                     Demo.NodeHelper.write(ostr, iceP_n);
                 },
                 read: (Ice.InputStream istr) =>
@@ -319,22 +320,22 @@ namespace Demo
                 });
         }
 
-        public _System.Threading.Tasks.Task<bool> DeleteNodeAsync(string nodeId, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
+        public _System.Threading.Tasks.Task<bool> DeleteNodeAsync(string graphName, string nodeId, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
         {
-            return _iceI_DeleteNodeAsync(nodeId, context, progress, cancel, false);
+            return _iceI_DeleteNodeAsync(graphName, nodeId, context, progress, cancel, false);
         }
 
-        private _System.Threading.Tasks.Task<bool> _iceI_DeleteNodeAsync(string iceP_nodeId, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
+        private _System.Threading.Tasks.Task<bool> _iceI_DeleteNodeAsync(string iceP_graphName, string iceP_nodeId, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
         {
             iceCheckTwowayOnly(_DeleteNode_name);
             var completed = new IceInternal.OperationTaskCompletionCallback<bool>(progress, cancel);
-            _iceI_DeleteNode(iceP_nodeId, context, synchronous, completed);
+            _iceI_DeleteNode(iceP_graphName, iceP_nodeId, context, synchronous, completed);
             return completed.Task;
         }
 
         private const string _DeleteNode_name = "DeleteNode";
 
-        private void _iceI_DeleteNode(string iceP_nodeId, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
+        private void _iceI_DeleteNode(string iceP_graphName, string iceP_nodeId, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
         {
             var outAsync = getOutgoingAsync<bool>(completed);
             outAsync.invoke(
@@ -345,6 +346,7 @@ namespace Demo
                 synchronous,
                 write: (Ice.OutputStream ostr) =>
                 {
+                    ostr.writeString(iceP_graphName);
                     ostr.writeString(iceP_nodeId);
                 },
                 read: (Ice.InputStream istr) =>
@@ -355,22 +357,22 @@ namespace Demo
                 });
         }
 
-        public _System.Threading.Tasks.Task<bool> EditNodeAsync(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
+        public _System.Threading.Tasks.Task<bool> EditNodeAsync(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
         {
-            return _iceI_EditNodeAsync(n, context, progress, cancel, false);
+            return _iceI_EditNodeAsync(graphName, n, context, progress, cancel, false);
         }
 
-        private _System.Threading.Tasks.Task<bool> _iceI_EditNodeAsync(global::Demo.MyNode iceP_n, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
+        private _System.Threading.Tasks.Task<bool> _iceI_EditNodeAsync(string iceP_graphName, global::Demo.MyNode iceP_n, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
         {
             iceCheckTwowayOnly(_EditNode_name);
             var completed = new IceInternal.OperationTaskCompletionCallback<bool>(progress, cancel);
-            _iceI_EditNode(iceP_n, context, synchronous, completed);
+            _iceI_EditNode(iceP_graphName, iceP_n, context, synchronous, completed);
             return completed.Task;
         }
 
         private const string _EditNode_name = "EditNode";
 
-        private void _iceI_EditNode(global::Demo.MyNode iceP_n, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
+        private void _iceI_EditNode(string iceP_graphName, global::Demo.MyNode iceP_n, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
         {
             var outAsync = getOutgoingAsync<bool>(completed);
             outAsync.invoke(
@@ -381,6 +383,7 @@ namespace Demo
                 synchronous,
                 write: (Ice.OutputStream ostr) =>
                 {
+                    ostr.writeString(iceP_graphName);
                     Demo.NodeHelper.write(ostr, iceP_n);
                 },
                 read: (Ice.InputStream istr) =>
@@ -418,27 +421,27 @@ namespace Demo
                 read: (Ice.InputStream istr) =>
                 {
                     global::Demo.MyNode[] ret;
-                    ret = Demo.NodeListHelper.read(istr);
+                    ret = Demo.NodeSeqHelper.read(istr);
                     return ret;
                 });
         }
 
-        public _System.Threading.Tasks.Task<bool> MoveNodeAsync(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
+        public _System.Threading.Tasks.Task<bool> MoveNodeAsync(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext(), _System.IProgress<bool> progress = null, _System.Threading.CancellationToken cancel = new _System.Threading.CancellationToken())
         {
-            return _iceI_MoveNodeAsync(n, context, progress, cancel, false);
+            return _iceI_MoveNodeAsync(graphName, n, context, progress, cancel, false);
         }
 
-        private _System.Threading.Tasks.Task<bool> _iceI_MoveNodeAsync(global::Demo.MyNode iceP_n, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
+        private _System.Threading.Tasks.Task<bool> _iceI_MoveNodeAsync(string iceP_graphName, global::Demo.MyNode iceP_n, Ice.OptionalContext context, _System.IProgress<bool> progress, _System.Threading.CancellationToken cancel, bool synchronous)
         {
             iceCheckTwowayOnly(_MoveNode_name);
             var completed = new IceInternal.OperationTaskCompletionCallback<bool>(progress, cancel);
-            _iceI_MoveNode(iceP_n, context, synchronous, completed);
+            _iceI_MoveNode(iceP_graphName, iceP_n, context, synchronous, completed);
             return completed.Task;
         }
 
         private const string _MoveNode_name = "MoveNode";
 
-        private void _iceI_MoveNode(global::Demo.MyNode iceP_n, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
+        private void _iceI_MoveNode(string iceP_graphName, global::Demo.MyNode iceP_n, _System.Collections.Generic.Dictionary<string, string> context, bool synchronous, IceInternal.OutgoingAsyncCompletionCallback completed)
         {
             var outAsync = getOutgoingAsync<bool>(completed);
             outAsync.invoke(
@@ -449,6 +452,7 @@ namespace Demo
                 synchronous,
                 write: (Ice.OutputStream ostr) =>
                 {
+                    ostr.writeString(iceP_graphName);
                     Demo.NodeHelper.write(ostr, iceP_n);
                 },
                 read: (Ice.InputStream istr) =>
@@ -463,19 +467,19 @@ namespace Demo
 
         #region Asynchronous operations
 
-        public Ice.AsyncResult<Demo.Callback_NodeMap_CreateNode> begin_CreateNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
+        public Ice.AsyncResult<Demo.Callback_NodeMap_CreateNode> begin_CreateNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
         {
-            return begin_CreateNode(n, context, null, null, false);
+            return begin_CreateNode(graphName, n, context, null, null, false);
         }
 
-        public Ice.AsyncResult begin_CreateNode(global::Demo.MyNode n, Ice.AsyncCallback callback, object cookie)
+        public Ice.AsyncResult begin_CreateNode(string graphName, global::Demo.MyNode n, Ice.AsyncCallback callback, object cookie)
         {
-            return begin_CreateNode(n, new Ice.OptionalContext(), callback, cookie, false);
+            return begin_CreateNode(graphName, n, new Ice.OptionalContext(), callback, cookie, false);
         }
 
-        public Ice.AsyncResult begin_CreateNode(global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
+        public Ice.AsyncResult begin_CreateNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
         {
-            return begin_CreateNode(n, context, callback, cookie, false);
+            return begin_CreateNode(graphName, n, context, callback, cookie, false);
         }
 
         public bool end_CreateNode(Ice.AsyncResult asyncResult)
@@ -485,7 +489,7 @@ namespace Demo
             return outgoing_.getResult(resultI_.wait());
         }
 
-        private Ice.AsyncResult<Demo.Callback_NodeMap_CreateNode> begin_CreateNode(global::Demo.MyNode iceP_n, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
+        private Ice.AsyncResult<Demo.Callback_NodeMap_CreateNode> begin_CreateNode(string iceP_graphName, global::Demo.MyNode iceP_n, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
         {
             iceCheckAsyncTwowayOnly(_CreateNode_name);
             var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_NodeMap_CreateNode, bool>(
@@ -497,23 +501,23 @@ namespace Demo
                     }
                 },
                 this, _CreateNode_name, cookie, completedCallback);
-            _iceI_CreateNode(iceP_n, context, synchronous, completed);
+            _iceI_CreateNode(iceP_graphName, iceP_n, context, synchronous, completed);
             return completed;
         }
 
-        public Ice.AsyncResult<Demo.Callback_NodeMap_DeleteNode> begin_DeleteNode(string nodeId, Ice.OptionalContext context = new Ice.OptionalContext())
+        public Ice.AsyncResult<Demo.Callback_NodeMap_DeleteNode> begin_DeleteNode(string graphName, string nodeId, Ice.OptionalContext context = new Ice.OptionalContext())
         {
-            return begin_DeleteNode(nodeId, context, null, null, false);
+            return begin_DeleteNode(graphName, nodeId, context, null, null, false);
         }
 
-        public Ice.AsyncResult begin_DeleteNode(string nodeId, Ice.AsyncCallback callback, object cookie)
+        public Ice.AsyncResult begin_DeleteNode(string graphName, string nodeId, Ice.AsyncCallback callback, object cookie)
         {
-            return begin_DeleteNode(nodeId, new Ice.OptionalContext(), callback, cookie, false);
+            return begin_DeleteNode(graphName, nodeId, new Ice.OptionalContext(), callback, cookie, false);
         }
 
-        public Ice.AsyncResult begin_DeleteNode(string nodeId, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
+        public Ice.AsyncResult begin_DeleteNode(string graphName, string nodeId, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
         {
-            return begin_DeleteNode(nodeId, context, callback, cookie, false);
+            return begin_DeleteNode(graphName, nodeId, context, callback, cookie, false);
         }
 
         public bool end_DeleteNode(Ice.AsyncResult asyncResult)
@@ -523,7 +527,7 @@ namespace Demo
             return outgoing_.getResult(resultI_.wait());
         }
 
-        private Ice.AsyncResult<Demo.Callback_NodeMap_DeleteNode> begin_DeleteNode(string iceP_nodeId, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
+        private Ice.AsyncResult<Demo.Callback_NodeMap_DeleteNode> begin_DeleteNode(string iceP_graphName, string iceP_nodeId, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
         {
             iceCheckAsyncTwowayOnly(_DeleteNode_name);
             var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_NodeMap_DeleteNode, bool>(
@@ -535,23 +539,23 @@ namespace Demo
                     }
                 },
                 this, _DeleteNode_name, cookie, completedCallback);
-            _iceI_DeleteNode(iceP_nodeId, context, synchronous, completed);
+            _iceI_DeleteNode(iceP_graphName, iceP_nodeId, context, synchronous, completed);
             return completed;
         }
 
-        public Ice.AsyncResult<Demo.Callback_NodeMap_EditNode> begin_EditNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
+        public Ice.AsyncResult<Demo.Callback_NodeMap_EditNode> begin_EditNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
         {
-            return begin_EditNode(n, context, null, null, false);
+            return begin_EditNode(graphName, n, context, null, null, false);
         }
 
-        public Ice.AsyncResult begin_EditNode(global::Demo.MyNode n, Ice.AsyncCallback callback, object cookie)
+        public Ice.AsyncResult begin_EditNode(string graphName, global::Demo.MyNode n, Ice.AsyncCallback callback, object cookie)
         {
-            return begin_EditNode(n, new Ice.OptionalContext(), callback, cookie, false);
+            return begin_EditNode(graphName, n, new Ice.OptionalContext(), callback, cookie, false);
         }
 
-        public Ice.AsyncResult begin_EditNode(global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
+        public Ice.AsyncResult begin_EditNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
         {
-            return begin_EditNode(n, context, callback, cookie, false);
+            return begin_EditNode(graphName, n, context, callback, cookie, false);
         }
 
         public bool end_EditNode(Ice.AsyncResult asyncResult)
@@ -561,7 +565,7 @@ namespace Demo
             return outgoing_.getResult(resultI_.wait());
         }
 
-        private Ice.AsyncResult<Demo.Callback_NodeMap_EditNode> begin_EditNode(global::Demo.MyNode iceP_n, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
+        private Ice.AsyncResult<Demo.Callback_NodeMap_EditNode> begin_EditNode(string iceP_graphName, global::Demo.MyNode iceP_n, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
         {
             iceCheckAsyncTwowayOnly(_EditNode_name);
             var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_NodeMap_EditNode, bool>(
@@ -573,7 +577,7 @@ namespace Demo
                     }
                 },
                 this, _EditNode_name, cookie, completedCallback);
-            _iceI_EditNode(iceP_n, context, synchronous, completed);
+            _iceI_EditNode(iceP_graphName, iceP_n, context, synchronous, completed);
             return completed;
         }
 
@@ -615,19 +619,19 @@ namespace Demo
             return completed;
         }
 
-        public Ice.AsyncResult<Demo.Callback_NodeMap_MoveNode> begin_MoveNode(global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
+        public Ice.AsyncResult<Demo.Callback_NodeMap_MoveNode> begin_MoveNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context = new Ice.OptionalContext())
         {
-            return begin_MoveNode(n, context, null, null, false);
+            return begin_MoveNode(graphName, n, context, null, null, false);
         }
 
-        public Ice.AsyncResult begin_MoveNode(global::Demo.MyNode n, Ice.AsyncCallback callback, object cookie)
+        public Ice.AsyncResult begin_MoveNode(string graphName, global::Demo.MyNode n, Ice.AsyncCallback callback, object cookie)
         {
-            return begin_MoveNode(n, new Ice.OptionalContext(), callback, cookie, false);
+            return begin_MoveNode(graphName, n, new Ice.OptionalContext(), callback, cookie, false);
         }
 
-        public Ice.AsyncResult begin_MoveNode(global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
+        public Ice.AsyncResult begin_MoveNode(string graphName, global::Demo.MyNode n, Ice.OptionalContext context, Ice.AsyncCallback callback, object cookie)
         {
-            return begin_MoveNode(n, context, callback, cookie, false);
+            return begin_MoveNode(graphName, n, context, callback, cookie, false);
         }
 
         public bool end_MoveNode(Ice.AsyncResult asyncResult)
@@ -637,7 +641,7 @@ namespace Demo
             return outgoing_.getResult(resultI_.wait());
         }
 
-        private Ice.AsyncResult<Demo.Callback_NodeMap_MoveNode> begin_MoveNode(global::Demo.MyNode iceP_n, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
+        private Ice.AsyncResult<Demo.Callback_NodeMap_MoveNode> begin_MoveNode(string iceP_graphName, global::Demo.MyNode iceP_n, _System.Collections.Generic.Dictionary<string, string> context, Ice.AsyncCallback completedCallback, object cookie, bool synchronous)
         {
             iceCheckAsyncTwowayOnly(_MoveNode_name);
             var completed = new IceInternal.OperationAsyncResultCompletionCallback<Demo.Callback_NodeMap_MoveNode, bool>(
@@ -649,7 +653,7 @@ namespace Demo
                     }
                 },
                 this, _MoveNode_name, cookie, completedCallback);
-            _iceI_MoveNode(iceP_n, context, synchronous, completed);
+            _iceI_MoveNode(iceP_graphName, iceP_n, context, synchronous, completed);
             return completed;
         }
 
@@ -807,13 +811,13 @@ namespace Demo
 
         public abstract global::Demo.MyNode[] GetAllNodes(Ice.Current current = null);
 
-        public abstract bool CreateNode(global::Demo.MyNode n, Ice.Current current = null);
+        public abstract bool CreateNode(string graphName, global::Demo.MyNode n, Ice.Current current = null);
 
-        public abstract bool EditNode(global::Demo.MyNode n, Ice.Current current = null);
+        public abstract bool EditNode(string graphName, global::Demo.MyNode n, Ice.Current current = null);
 
-        public abstract bool DeleteNode(string nodeId, Ice.Current current = null);
+        public abstract bool DeleteNode(string graphName, string nodeId, Ice.Current current = null);
 
-        public abstract bool MoveNode(global::Demo.MyNode n, Ice.Current current = null);
+        public abstract bool MoveNode(string graphName, global::Demo.MyNode n, Ice.Current current = null);
 
         #endregion
 
@@ -857,7 +861,7 @@ namespace Demo
             inS.readEmptyParams();
             var ret = obj.GetAllNodes(current);
             var ostr = inS.startWriteParams();
-            Demo.NodeListHelper.write(ostr, ret);
+            Demo.NodeSeqHelper.write(ostr, ret);
             inS.endWriteParams(ostr);
             return inS.setResult(ostr);
         }
@@ -868,10 +872,12 @@ namespace Demo
         {
             Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Normal, current.mode);
             var istr = inS.startReadParams();
+            string iceP_graphName;
             global::Demo.MyNode iceP_n;
+            iceP_graphName = istr.readString();
             iceP_n = Demo.NodeHelper.read(istr);
             inS.endReadParams();
-            var ret = obj.CreateNode(iceP_n, current);
+            var ret = obj.CreateNode(iceP_graphName, iceP_n, current);
             var ostr = inS.startWriteParams();
             ostr.writeBool(ret);
             inS.endWriteParams(ostr);
@@ -884,10 +890,12 @@ namespace Demo
         {
             Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Normal, current.mode);
             var istr = inS.startReadParams();
+            string iceP_graphName;
             global::Demo.MyNode iceP_n;
+            iceP_graphName = istr.readString();
             iceP_n = Demo.NodeHelper.read(istr);
             inS.endReadParams();
-            var ret = obj.EditNode(iceP_n, current);
+            var ret = obj.EditNode(iceP_graphName, iceP_n, current);
             var ostr = inS.startWriteParams();
             ostr.writeBool(ret);
             inS.endWriteParams(ostr);
@@ -900,10 +908,12 @@ namespace Demo
         {
             Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Normal, current.mode);
             var istr = inS.startReadParams();
+            string iceP_graphName;
             string iceP_nodeId;
+            iceP_graphName = istr.readString();
             iceP_nodeId = istr.readString();
             inS.endReadParams();
-            var ret = obj.DeleteNode(iceP_nodeId, current);
+            var ret = obj.DeleteNode(iceP_graphName, iceP_nodeId, current);
             var ostr = inS.startWriteParams();
             ostr.writeBool(ret);
             inS.endWriteParams(ostr);
@@ -916,10 +926,12 @@ namespace Demo
         {
             Ice.ObjectImpl.iceCheckMode(Ice.OperationMode.Normal, current.mode);
             var istr = inS.startReadParams();
+            string iceP_graphName;
             global::Demo.MyNode iceP_n;
+            iceP_graphName = istr.readString();
             iceP_n = Demo.NodeHelper.read(istr);
             inS.endReadParams();
-            var ret = obj.MoveNode(iceP_n, current);
+            var ret = obj.MoveNode(iceP_graphName, iceP_n, current);
             var ostr = inS.startWriteParams();
             ostr.writeBool(ret);
             inS.endWriteParams(ostr);

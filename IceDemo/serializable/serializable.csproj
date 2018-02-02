@@ -107,6 +107,7 @@
       <Link>MyNode.cs</Link>
     </Compile>
     <None Include="packages.config" />
+    <Compile Include="MyGraph.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>

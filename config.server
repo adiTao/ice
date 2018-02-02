@@ -1,5 +1,6 @@
 Node.Endpoints=tcp -h localhost -p 10000
 User.Endpoints=tcp -h localhost -p 10001
+Graph.Endpoints=tcp -h localhost -p 10002
 
 #
 # Warn about connection exceptions.

@@ -134,6 +134,9 @@
     <Compile Include="..\..\UserMapI.cs">
       <Link>UserMapI.cs</Link>
     </Compile>
+	<Compile Include="..\..\GraphMapI.cs">
+      <Link>GraphMapI.cs</Link>
+    </Compile>
     <Compile Include="..\..\Server.cs">
       <Link>Server.cs</Link>
     </Compile>
@@ -146,6 +149,9 @@
     <None Include="..\..\UserMap.ice">
       <Link>UserMap.ice</Link>
     </None>
+    <None Include="..\..\GraphMap.ice">
+      <Link>GraphMap.ice</Link>
+    </None>
     <None Include="..\..\config.server">
       <Link>config.server</Link>
     </None>
@@ -153,6 +159,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <Compile Include="generated\GraphMap.cs" />
     <Compile Include="generated\NodeMap.cs" />
     <Compile Include="generated\UserMap.cs" />
     <Compile Include="Neo4jConfig.cs" />

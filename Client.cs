@@ -38,6 +38,13 @@ public class Client : Ice.Application
             Console.Error.WriteLine("invalid proxy");
             return 1;
         }
+        var graphMap = GraphMapPrxHelper.checkedCast(communicator().propertyToProxy("Graph.Proxy"));
+        if (graphMap == null)
+        {
+            Console.Error.WriteLine("invalid proxy");
+            return 1;
+        }
+
         Console.WriteLine("輸入名字：");
         string user_name = Console.ReadLine();
 
@@ -53,14 +60,13 @@ public class Client : Ice.Application
         adapter.add(new UserCallBackI(), Ice.Util.stringToIdentity("callbackReceiver"));
         adapter.activate();
 
-
         UserCallBackPrx callbackPrx = UserCallBackPrxHelper.uncheckedCast(adapter.createProxy(Ice.Util.stringToIdentity("callbackReceiver")));
-        Dictionary<string, string> ctx = new Dictionary<string, string>();
-        ctx.Add("user_name", user_name);
+        Dictionary<string, string> ctx = new Dictionary<string, string> {{"user_name", user_name}};
         userMap.SetupCallback(callbackPrx, ctx);
 
         menu();
         MyNode[] allnodes = new MyNode[10000];
+        MyGraph[] allgraphs = new MyGraph[10000];
         string line = null;
         do
         {
@@ -73,16 +79,59 @@ public class Client : Ice.Application
                 {
                     break;
                 }
-                if(line.Equals("g"))
+                if (line.Equals("g"))
                 {
                     Console.WriteLine("輸入訊息：");
                     string msg = Console.ReadLine();
                     userMap.SendGreeting(msg, ctx);
                     Console.Out.Flush();
                 }
+                if (line.Equals("lg"))
+                {
+                    allgraphs = graphMap.GetAllMaps(ctx);
+                    foreach (var graph in allgraphs)
+                    {
+                        Console.WriteLine($"GraphName:{graph.GraphName}");
+                    }
+                    Console.Out.Flush();
+                }
+                if (line.Equals("cg"))
+                {
+                    Console.WriteLine("圖名稱：");
+                    string graphName = Console.ReadLine();
+                    graphMap.CreateGraph(graphName, ctx);
+                    Console.Out.Flush();
+                }
+                if (line.Equals("eg"))
+                {
+                    Console.WriteLine("圖名稱：");
+                    string graphName = Console.ReadLine();
+                    MyGraph editGraph = graphMap.GetAllMaps(ctx).FirstOrDefault(p => p.GraphName == graphName);
+                    if (editGraph == null)
+                    {
+                        Console.WriteLine("此圖不存在");
+                    }
+                    else
+                    {
+                        Console.WriteLine("新名稱：");
+                        editGraph.GraphName = Console.ReadLine();
+                        graphMap.EditGraph(graphName, editGraph.GraphName, ctx);
+                    }
+
+                    Console.Out.Flush();
+                }
+                if (line.Equals("rg"))
+                {
+                    Console.WriteLine("圖名稱：");
+                    string graphName = Console.ReadLine();
+                    graphMap.DeleteGraph(graphName, ctx);
+                    Console.Out.Flush();
+                }
                 if (line.Equals("l"))
                 {
-                    allnodes = nodeMap.GetAllNodes(ctx);
+                    Console.WriteLine("圖名稱：");
+                    string graphName = Console.ReadLine();
+                    allnodes = graphMap.GetAllNodes(graphName, ctx);
                     foreach (var node in allnodes)
                     {
                         Console.WriteLine($"Id:{node.NodeId}   NodeText:{node.NodeText}   ParetnId:{node.ParentId}");
@@ -91,63 +140,104 @@ public class Client : Ice.Application
                 }
                 if (line.Equals("c"))
                 {
-                    Console.WriteLine("Node Id：");
-                    string id = Console.ReadLine();
-                    Console.WriteLine("節點描述：");
-                    string text = Console.ReadLine();
-                    MyNode node = new MyNode();
-                    node.NodeId = id;
-                    node.NodeText = text;
-                    node.ParentId = "root";
-                    if (nodeMap.GetAllNodes(ctx).Length > 0)
+                    Console.WriteLine("圖名稱：");
+                    string graphName = Console.ReadLine();
+                    MyGraph editGraph = graphMap.GetAllMaps(ctx).FirstOrDefault(p => p.GraphName == graphName);
+                    if (editGraph == null)
                     {
-                        Console.WriteLine("父節點 Id：");
-                        node.ParentId = Console.ReadLine();
+                        Console.WriteLine("此圖不存在");
                     }
-                    nodeMap.CreateNode(node, ctx);
+                    else
+                    {
+                        Console.WriteLine("Node Id：");
+                        string id = Console.ReadLine();
+                        Console.WriteLine("節點描述：");
+                        string text = Console.ReadLine();
+                        MyNode node = new MyNode
+                        {
+                            NodeId = id,
+                            NodeText = text,
+                            ParentId = "root"
+                        };
+                        if (graphMap.GetAllNodes(graphName, ctx).Length > 0)
+                        {
+                            Console.WriteLine("父節點 Id：");
+                            node.ParentId = Console.ReadLine();
+                        }
+                        nodeMap.CreateNode(graphName, node, ctx);
+                    }
+
                     Console.Out.Flush();
                 }
                 if (line.Equals("e"))
                 {
-                    Console.WriteLine("Node Id：");
-                    string id = Console.ReadLine();
-                    MyNode editNode = nodeMap.GetAllNodes(ctx).FirstOrDefault(p => p.NodeId == id);
-                    if (editNode == null)
+                    Console.WriteLine("圖名稱：");
+                    string graphName = Console.ReadLine();
+                    MyGraph editGraph = graphMap.GetAllMaps(ctx).FirstOrDefault(p => p.GraphName == graphName);
+                    if (editGraph == null)
                     {
-                        Console.WriteLine("此Id不存在");
+                        Console.WriteLine("此圖不存在");
                     }
                     else
                     {
-                        Console.WriteLine("節點描述：");
-                        editNode.NodeText = Console.ReadLine();
-                        nodeMap.EditNode(editNode, ctx);
+                        Console.WriteLine("Node Id：");
+                        string id = Console.ReadLine();
+                        MyNode editNode = graphMap.GetAllNodes(graphName, ctx).FirstOrDefault(p => p.NodeId == id);
+                        if (editNode == null)
+                        {
+                            Console.WriteLine("此Id不存在");
+                        }
+                        else
+                        {
+                            Console.WriteLine("節點描述：");
+                            editNode.NodeText = Console.ReadLine();
+                            nodeMap.EditNode(graphName, editNode, ctx);
+                        }
                     }
-
                     Console.Out.Flush();
                 }
                 if (line.Equals("m"))
                 {
-                    Console.WriteLine("Node Id：");
-                    string id = Console.ReadLine();
-                    MyNode editNode = nodeMap.GetAllNodes(ctx).FirstOrDefault(p => p.NodeId == id);
-                    if (editNode == null)
+                    Console.WriteLine("圖名稱：");
+                    string graphName = Console.ReadLine();
+                    MyGraph editGraph = graphMap.GetAllMaps(ctx).FirstOrDefault(p => p.GraphName == graphName);
+                    if (editGraph == null)
                     {
-                        Console.WriteLine("此Id不存在");
+                        Console.WriteLine("此圖不存在");
                     }
                     else
                     {
-                        Console.WriteLine("父節點 Id：");
-                        editNode.ParentId = Console.ReadLine();
-                        nodeMap.MoveNode(editNode, ctx);
+                        Console.WriteLine("Node Id：");
+                        string id = Console.ReadLine();
+                        MyNode editNode = graphMap.GetAllNodes(graphName, ctx).FirstOrDefault(p => p.NodeId == id);
+                        if (editNode == null)
+                        {
+                            Console.WriteLine("此Id不存在");
+                        }
+                        else
+                        {
+                            Console.WriteLine("父節點 Id：");
+                            editNode.ParentId = Console.ReadLine();
+                            nodeMap.MoveNode(graphName, editNode, ctx);
+                        }
                     }
-
                     Console.Out.Flush();
                 }
                 if (line.Equals("r"))
                 {
-                    Console.WriteLine("Node Id：");
-                    string id = Console.ReadLine();
-                    nodeMap.DeleteNode(id, ctx);
+                    Console.WriteLine("圖名稱：");
+                    string graphName = Console.ReadLine();
+                    MyGraph editGraph = graphMap.GetAllMaps(ctx).FirstOrDefault(p => p.GraphName == graphName);
+                    if (editGraph == null)
+                    {
+                        Console.WriteLine("此圖不存在");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Node Id：");
+                        string id = Console.ReadLine();
+                        nodeMap.DeleteNode(graphName, id, ctx);
+                    }
                     Console.Out.Flush();
                 }
                 else if(line.Equals("s"))
@@ -183,7 +273,11 @@ public class Client : Ice.Application
     {
         Console.Write(
             "g: 傳訊息\n" +
-            "l: 列出節點\n" +
+            "lg: 列出圖\n" +
+            "cg: 新增圖\n" +
+            "eg: 編輯圖\n" +
+            "rg: 刪除圖\n" +
+            "l: 列出圖內節點\n" +
             "c: 新增節點\n" +
             "e: 編輯節點\n" +
             "r: 刪除節點\n" +
