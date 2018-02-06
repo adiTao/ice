@@ -22,6 +22,13 @@ public class Server
             //啟用noe4j
             Neo4jConfig.Register();
 
+            //使用TaskQueue
+            TaskUtils.TaskQueue = new AsyncTaskQueue
+            {
+                AutoCancelPreviousTask = true, // 自動取消之前的任務
+                UseSingleThread = true // 使用單執行緒執行任務
+            };
+
             var nodeAdapter = communicator().createObjectAdapter("Node");
             nodeAdapter.add(new NodeMapI(), Ice.Util.stringToIdentity("node"));
             nodeAdapter.activate();
