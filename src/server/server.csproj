@@ -128,12 +128,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncTaskQueue.cs" />
     <Compile Include="NodeMapI.cs" />
-	<Compile Include="UserMapI.cs" />
-	<Compile Include="GraphMapI.cs" />
-	<Compile Include="Server.cs" />
-	<Compile Include="User.cs" />
-
+    <Compile Include="TaskUtils.cs" />
+    <Compile Include="UserMapI.cs" />
+    <Compile Include="GraphMapI.cs" />
+    <Compile Include="Server.cs" />
+    <Compile Include="User.cs" />
     <None Include="..\..\slice\NodeMap.ice">
       <Link>NodeMap.ice</Link>
     </None>

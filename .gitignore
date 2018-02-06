@@ -272,3 +272,11 @@ __pycache__/
 *.exe
 /Ice.dll
 /MyGreeting.dll
+/src/client/generated/UserMap.cs
+/src/client/generated/NodeMap.cs
+/src/client/generated/IceBuilder.d
+/src/client/generated/GraphMap.cs
+/src/server/generated/UserMap.cs
+/src/server/generated/NodeMap.cs
+/src/server/generated/IceBuilder.d
+/src/server/generated/GraphMap.cs
