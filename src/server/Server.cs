@@ -26,7 +26,7 @@ public class Server
             TaskUtils.TaskQueue = new AsyncTaskQueue
             {
                 AutoCancelPreviousTask = true, // 自動取消之前的任務
-                UseSingleThread = true // 使用單執行緒執行任務
+                UseSingleThread = false // 使用單執行緒執行任務
             };
 
             var nodeAdapter = communicator().createObjectAdapter("Node");

@@ -15,7 +15,7 @@ module Demo
         NodeSeq GetAllNodes(string graphName); //列出所有圖內節點
 		GraphSeq GetAllMaps(); //列出所有圖
 		bool CreateGraph(string graphName);  //新增圖
-		bool EditGraph(string graphName, string newGraphName);  //編輯圖
+		bool EditGraph(Graph oldGraph, string newGraphName);  //編輯圖
 		bool DeleteGraph(string graphName);  //刪除圖
     };
 };

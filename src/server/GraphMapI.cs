@@ -50,11 +50,11 @@ public class GraphMapI : GraphMapDisp_
         return true;
     }
 
-    public override bool EditGraph(string graphName, string newGraphName, Ice.Current current)
+    public override bool EditGraph(MyGraph oldGraph, string newGraphName, Ice.Current current)
     {
         Neo4jConfig.GraphClient.Cypher
             .Match("(graph:Graph)")
-            .Where((MyGraph graph) => graph.GraphName == graphName)
+            .Where((MyGraph graph) => graph.GraphName == oldGraph.GraphName)
             .Set("graph.GraphName = {graphName}")
             .WithParam("graphName", newGraphName)
             .ExecuteWithoutResults();
@@ -90,16 +90,14 @@ public class GraphMapI : GraphMapDisp_
     private void BroadcastGraph(string msg, string graphName, Ice.Current current)
     {
         string user_name = current.ctx["user_name"];
-        foreach (var user in _users)
+        foreach (var user in UserUtils.OnlineUser)
         {
             if (user.Name == user_name)
             {
                 continue;
             }
-            user.Cp.ResponseGraph(msg, graphName, current.ctx);
+            //user.Cp.ResponseGraph(msg, graphName, current.ctx);
+            TaskUtils.AddTask(user.Cp.ResponseGraphAsync(msg, graphName, current.ctx));
         }
     }
-
-
-    private UserList _users = new UserList();
 }

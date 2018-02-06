@@ -2,7 +2,12 @@
 
 namespace Demo
 {
-    class User
+    public static class UserUtils
+    {
+        public static UserList OnlineUser = new UserList();
+    }
+
+    public class User
     {
         public User(string name, UserCallBackPrx cp)
         {
@@ -66,7 +71,7 @@ namespace Demo
     // Also note that updates to the list need to be done from the UI thread
     // for ObservableCollection to work correctly.
     //
-    class UserList : ObservableCollection<User>
+    public class UserList : ObservableCollection<User>
     {
         public UserList()
         {

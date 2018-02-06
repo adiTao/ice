@@ -119,16 +119,14 @@ public class NodeMapI : NodeMapDisp_
     private void BroadcastNode(string msg, MyNode node, Ice.Current current)
     {
         string user_name = current.ctx["user_name"];
-        foreach (var user in _users)
+        foreach (var user in UserUtils.OnlineUser)
         {
             if (user.Name == user_name)
             {
                 continue;
             }
-            user.Cp.ResponseNode(msg, node, current.ctx);
+            //user.Cp.ResponseNode(msg, node, current.ctx);
+            TaskUtils.AddTask(user.Cp.ResponseNodeAsync(msg, node, current.ctx));
         }
     }
-
-
-    private UserList _users = new UserList();
 }

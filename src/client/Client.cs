@@ -114,8 +114,8 @@ public class Client : Ice.Application
                     else
                     {
                         Console.WriteLine("·s¦WºÙ¡G");
-                        editGraph.GraphName = Console.ReadLine();
-                        graphMap.EditGraph(graphName, editGraph.GraphName, ctx);
+                        string newName = Console.ReadLine();
+                        graphMap.EditGraph(editGraph, newName, ctx);
                     }
 
                     Console.Out.Flush();

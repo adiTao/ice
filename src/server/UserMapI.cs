@@ -30,7 +30,7 @@ public class UserMapI : UserMapDisp_
         {
             string user_name = current.ctx["user_name"];
             Console.Out.WriteLine("使用者 {0} 已註冊", user_name);
-            _users.Add(new User(user_name, cp));
+            UserUtils.OnlineUser.Add(new User(user_name, cp));
         }
         else
         {
@@ -41,9 +41,9 @@ public class UserMapI : UserMapDisp_
     public override bool Register(string name, Ice.Current current)
     {
         Console.Out.WriteLine("驗證 {0} 是否登入!", name);
-        if (_users.Count == 0)
+        if (UserUtils.OnlineUser.Count == 0)
             return true;
-        return _users.All(user => user.Name != name);
+        return UserUtils.OnlineUser.All(user => user.Name != name);
     }
 
     public override void Unregister(Ice.Current current)
@@ -51,10 +51,10 @@ public class UserMapI : UserMapDisp_
         string user_name = current.ctx["user_name"];
         if (user_name != null)
         {
-            for (int i = _users.Count - 1; i >= 0; i--)
+            for (int i = UserUtils.OnlineUser.Count - 1; i >= 0; i--)
             {
-                if (_users[i].Name == user_name)
-                    _users.RemoveAt(i);
+                if (UserUtils.OnlineUser[i].Name == user_name)
+                    UserUtils.OnlineUser.RemoveAt(i);
             }
             string msg = string.Format("離開({0})", user_name);
             Console.WriteLine(msg);
@@ -67,15 +67,14 @@ public class UserMapI : UserMapDisp_
     private void Broadcast(string msg, Ice.Current current)
     {
         string user_name = current.ctx["user_name"];
-        foreach (var user in _users)
+        foreach (var user in UserUtils.OnlineUser)
         {
             if (user.Name == user_name)
             {
                 continue;
             }
-            user.Cp.Response(msg, current.ctx);
+            //user.Cp.Response(msg, current.ctx);
+            TaskUtils.AddTask(user.Cp.ResponseAsync(msg, current.ctx));
         }
     }
-
-    private UserList _users = new UserList();
 }
