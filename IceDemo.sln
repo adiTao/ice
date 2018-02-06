@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27130.2024
+VisualStudioVersion = 15.0.27130.2026
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "client", "IceDemo\client\client.csproj", "{228B2AFC-57DC-4E1F-8335-D0CABCDA987B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "client", "src\client\client.csproj", "{228B2AFC-57DC-4E1F-8335-D0CABCDA987B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "serializable", "IceDemo\serializable\serializable.csproj", "{8D371651-BFA4-43C9-B143-77FABCD2B310}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "serializable", "src\serializable\serializable.csproj", "{8D371651-BFA4-43C9-B143-77FABCD2B310}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "server", "IceDemo\server\server.csproj", "{0B41ADFF-7802-4A36-8374-C32DE33BABCD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "server", "src\server\server.csproj", "{0B41ADFF-7802-4A36-8374-C32DE33BABCD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

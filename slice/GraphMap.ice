@@ -3,7 +3,7 @@
 // Copyright (c) 2003-2017 ZeroC, Inc. All rights reserved.
 //
 // **********************************************************************
-#include <..\..\..\NodeMap.ice>
+#include <..\..\..\slice\NodeMap.ice>
 #pragma once
 
 module Demo

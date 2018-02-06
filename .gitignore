@@ -269,3 +269,6 @@ __pycache__/
 /Neo4jClient.xml
 /Neo4jClient.dll
 /Neo4j.Driver.dll
+*.exe
+/Ice.dll
+/MyGreeting.dll

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
   <Import Project="..\..\packages\zeroc.ice.net.3.7.0\build\zeroc.ice.net.props" Condition="Exists('..\..\packages\zeroc.ice.net.3.7.0\build\zeroc.ice.net.props') and '$(ICE_SRC_DIST)' != 'all'" />
   <PropertyGroup Label="Globals">
     <NuGetPackageImportStamp>
@@ -12,14 +12,14 @@
     <ProjectType>Local</ProjectType>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{0B41ADFF-7802-4A36-8374-C32DE33BABCD}</ProjectGuid>
+    <ProjectGuid>{228B2AFC-57DC-4E1F-8335-D0CABCDA987B}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ApplicationIcon>
     </ApplicationIcon>
     <AssemblyKeyContainerName>
     </AssemblyKeyContainerName>
-    <AssemblyName>server</AssemblyName>
+    <AssemblyName>client</AssemblyName>
     <AssemblyOriginatorKeyFile>
     </AssemblyOriginatorKeyFile>
     <DefaultClientScript>JScript</DefaultClientScript>
@@ -37,7 +37,7 @@
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
     <OldToolsVersion>3.5</OldToolsVersion>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <TargetFrameworkProfile />
     <ProjectTypeGuids>{3C53C28F-DC44-46B0-8B85-0C96B85B2042};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
   </PropertyGroup>
@@ -95,74 +95,32 @@
       <SpecificVersion>False</SpecificVersion>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Neo4j.Driver, Version=1.4.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Neo4j.Driver.1.4.1\lib\net452\Neo4j.Driver.dll</HintPath>
-    </Reference>
-    <Reference Include="Neo4jClient, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Neo4jClient.3.0.0\lib\net46\Neo4jClient.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.10.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System">
       <Name>System</Name>
     </Reference>
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Net.Http, Version=4.1.1.1, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Net.Http.4.3.2\lib\net46\System.Net.Http.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Algorithms, Version=4.1.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Security.Cryptography.Algorithms.4.3.0\lib\net461\System.Security.Cryptography.Algorithms.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Encoding, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Security.Cryptography.Encoding.4.3.0\lib\net46\System.Security.Cryptography.Encoding.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.Primitives, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Security.Cryptography.Primitives.4.3.0\lib\net46\System.Security.Cryptography.Primitives.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Security.Cryptography.X509Certificates, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\System.Security.Cryptography.X509Certificates.4.3.0\lib\net461\System.Security.Cryptography.X509Certificates.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\NodeMapI.cs">
-      <Link>NodeMapI.cs</Link>
-    </Compile>
-    <Compile Include="..\..\UserMapI.cs">
-      <Link>UserMapI.cs</Link>
-    </Compile>
-	<Compile Include="..\..\GraphMapI.cs">
-      <Link>GraphMapI.cs</Link>
-    </Compile>
-    <Compile Include="..\..\Server.cs">
-      <Link>Server.cs</Link>
-    </Compile>
-    <Compile Include="..\..\User.cs">
-      <Link>User.cs</Link>
-    </Compile>
-    <None Include="..\..\NodeMap.ice">
+    <Compile Include="Client.cs" />
+    <Compile Include="UserCallBackI.cs" />
+    <None Include="..\..\slice\NodeMap.ice">
       <Link>NodeMap.ice</Link>
     </None>
-    <None Include="..\..\UserMap.ice">
+    <None Include="..\..\slice\UserMap.ice">
       <Link>UserMap.ice</Link>
     </None>
-    <None Include="..\..\GraphMap.ice">
+    <None Include="..\..\slice\GraphMap.ice">
       <Link>GraphMap.ice</Link>
     </None>
-    <None Include="..\..\config.server">
-      <Link>config.server</Link>
-    </None>
-    <None Include="app.config">
-      <SubType>Designer</SubType>
+    <None Include="..\..\config.client">
+      <Link>config.client</Link>
     </None>
     <None Include="packages.config" />
     <Compile Include="generated\GraphMap.cs" />
     <Compile Include="generated\NodeMap.cs" />
     <Compile Include="generated\UserMap.cs" />
-    <Compile Include="Neo4jConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <AppDesigner Include="Properties\" />
   </ItemGroup>
